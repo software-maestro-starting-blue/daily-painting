@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -27,11 +25,11 @@ public final class DiaryController {
 
     @GetMapping("/api/diaries")
     public ResponseEntity<DiaryFormResponse> diaryHome() {
+
         DiaryFormResponse diaryFormResponse = new DiaryFormResponse(
-                List.of(Arrays.toString(Weather.values())),
-                List.of(Arrays.toString(Emotion.values())),
-                List.of(Arrays.toString(MetPerson.values()))
-        );
+                Weather.findAllNames(),
+                Emotion.findAllNames(),
+                MetPerson.findAllNames());
 
         return ResponseEntity.ok(diaryFormResponse);
     }

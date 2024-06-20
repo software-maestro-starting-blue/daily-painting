@@ -2,6 +2,10 @@ package com.startingblue.dailypainting.diary.domain;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 public enum Weather {
     CLEAR(1L, "Clear"), // 맑음
@@ -30,5 +34,11 @@ public enum Weather {
         }
 
         throw new RuntimeException("존재하지 않는 날씨 입니다.");
+    }
+
+    public static List<String> findAllNames() {
+        return Arrays.stream(Weather.values())
+                .map(Weather::getName)
+                .collect(Collectors.toList());
     }
 }

@@ -3,7 +3,9 @@ package com.startingblue.dailypainting.diary.domain;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public enum MetPerson {
@@ -38,5 +40,11 @@ public enum MetPerson {
         }
 
         return matchingMetPeople;
+    }
+
+    public static List<String> findAllNames() {
+        return Arrays.stream(MetPerson.values())
+                .map(MetPerson::getName)
+                .collect(Collectors.toList());
     }
 }

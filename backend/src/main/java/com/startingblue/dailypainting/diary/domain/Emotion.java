@@ -3,7 +3,9 @@ package com.startingblue.dailypainting.diary.domain;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public enum Emotion {
@@ -49,5 +51,11 @@ public enum Emotion {
         }
 
         return matchingEmotions;
+    }
+
+    public static List<String> findAllNames() {
+        return Arrays.stream(Emotion.values())
+                .map(Emotion::getName)
+                .collect(Collectors.toList());
     }
 }
