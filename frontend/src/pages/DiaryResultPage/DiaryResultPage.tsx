@@ -2,7 +2,7 @@
 import './DiaryResultPage.css';
 
 import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout/DiaryImageLayout";
-import FeedbackButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
+import FeedbackRoutingButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
 
 export interface DiaryResultPageProps {
     imageUrl: string,
@@ -24,7 +24,7 @@ const DiaryResultPage = (props: DiaryResultPageProps) => {
     return (
     <div className="DiaryResultPage">
         <DiaryImageLayout imageUrl={imageUrl} onImageDownloadClick={handleImageDownloadClick}/>
-        <FeedbackButtonLayout onFeedbackClick={handleFeedbackClick}/>
+        <FeedbackRoutingButtonLayout onFeedbackClick={handleFeedbackClick}/>
     </div>
     );
 }
