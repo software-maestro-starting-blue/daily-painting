@@ -13,7 +13,21 @@ const DiaryResultPage = (props: DiaryResultPageProps) => {
     const {imageUrl, diaryId, ...rest} = props;
 
     const handleImageDownloadClick: () => void = () => {
-        // TODO: imageUrl의 이미지 다운로드 구현 필요
+        console.log('Downloading image:', imageUrl);
+        fetch(imageUrl, { method: 'GET' })
+            .then((response) => response.blob())
+            .then((blob) => {
+                console.log('Downloaded image:', blob);
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'image.jpg';
+                link.click();
+                URL.revokeObjectURL(url);
+            })
+            .catch((error) => {
+                console.error('Error downloading image:', error);
+            });
     };
 
     const handleFeedbackClick: () => void = () => {
