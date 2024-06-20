@@ -1,8 +1,8 @@
 // import * as S from '';
 import './DiaryResultPage.css';
 
-import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout";
-import FeedbackButtonLayout from "../../components/diaryresult/FeedbackButtonLayout";
+import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout/DiaryImageLayout";
+import FeedbackButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
 
 export interface DiaryResultPageProps {
     imageUrl: string,
