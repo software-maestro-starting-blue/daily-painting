@@ -13,7 +13,7 @@ public final class DiaryFormResponse {
 
     private final List<String> metPeople;
 
-    public DiaryFormResponse(List<String> weathers, List<String> emotions, List<String> metPeople) {
+    public DiaryFormResponse(final List<String> weathers, final List<String> emotions, final List<String> metPeople) {
         this.weathers = weathers;
         this.emotions = emotions;
         this.metPeople = metPeople;

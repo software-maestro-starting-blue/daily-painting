@@ -1,6 +1,6 @@
 package com.startingblue.dailypainting.diary.controller;
 
-import com.startingblue.dailypainting.chatgpt.service.ChatGptService;
+import com.startingblue.dailypainting.openai.service.OpenAIService;
 import com.startingblue.dailypainting.diary.domain.Emotion;
 import com.startingblue.dailypainting.diary.domain.MetPerson;
 import com.startingblue.dailypainting.diary.domain.Weather;
@@ -21,11 +21,10 @@ import java.util.concurrent.CompletableFuture;
 public final class DiaryController {
 
     private final DiaryService diaryService;
-    private final ChatGptService chatGptService;
+    private final OpenAIService openAIService;
 
     @GetMapping("/api/diaries")
     public ResponseEntity<DiaryFormResponse> diaryHome() {
-
         DiaryFormResponse diaryFormResponse = new DiaryFormResponse(
                 Weather.findAllNames(),
                 Emotion.findAllNames(),
@@ -37,18 +36,13 @@ public final class DiaryController {
     @PostMapping("/api/diaries")
     public ResponseEntity<DiarySavedResponse> createDiary(@RequestBody DiarySaveRequest diarySaveRequest,
                                                           UriComponentsBuilder uriBuilder) {
-        // 일기 저장 (이미지 제외)
         Long savedDiaryId = diaryService.save(diarySaveRequest);
 
-        // 챗지피티한테 일기 내용 전송 및 이미지 URL 받기 (비동기 처리 후 동기적으로 기다림)
-        CompletableFuture<String> future = chatGptService.sendDiaryToChatGpt(diarySaveRequest.getContent());
-        String imageUrl = future.join(); // 동기적으로 기다림
+        CompletableFuture<String> future = openAIService.sendDiaryToChatGpt(diarySaveRequest.getContent());
+        String imageUrl = future.join();
 
-        // join 이후 시작되는 메소드
-        // 일기에 저장된 이미지 URL 저장, 1시간 이후 사라짐 (우선 이렇게 해둠)
         diaryService.updateDiaryImagePath(savedDiaryId, imageUrl);
 
-        //  일기 아이디, 생성된 그림 URL 응답 및 redirect path 전송
         DiarySavedResponse diarySavedResponse = new DiarySavedResponse(savedDiaryId, imageUrl);
         URI location = uriBuilder.path("/diaries/show")
                 .build()

@@ -9,21 +9,21 @@ import java.util.stream.Collectors;
 
 @Getter
 public enum MetPerson {
-    FRIEND(1L, "Friend"), // 친구
-    FAMILY(2L, "Family"), // 가족
-    LOVER(3L, "Lover"), // 애인
-    ACQUAINTANCE(4L, "Acquaintance"), // 지인
-    NO_ONE(5L, "NoOne"); // 안만남
+    FRIEND(1L, "친구"), // Friend
+    FAMILY(2L, "가족"), // Family
+    LOVER(3L, "애인"), // Lover
+    ACQUAINTANCE(4L, "지인"), // Acquaintance
+    NO_ONE(5L, "안만남"); // NoOne
 
     private final Long id;
     private final String name;
 
-    MetPerson(Long id, String name) {
+    MetPerson(final Long id, final String name) {
         this.id = id;
         this.name = name;
     }
 
-    public static List<MetPerson> findMetPeople(List<String> metPersonTypes) {
+    public static List<MetPerson> findMetPeople(final List<String> metPersonTypes) {
         List<MetPerson> matchingMetPeople = new ArrayList<>();
 
         for (String metPersonType : metPersonTypes) {

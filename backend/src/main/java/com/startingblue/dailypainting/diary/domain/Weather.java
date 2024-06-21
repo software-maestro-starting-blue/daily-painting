@@ -8,25 +8,25 @@ import java.util.stream.Collectors;
 
 @Getter
 public enum Weather {
-    CLEAR(1L, "Clear"), // 맑음
-    CLOUDY(2L, "Cloudy"), // 흐림
-    RAIN(3L, "Rain"), // 비
-    SNOW(4L, "Snow"), // 눈
-    WINDY(5L, "Windy"), // 바람
-    YELLOW_DUST(6L, "YellowDust"), // 황사
-    HEATWAVE(7L, "Heatwave"), // 폭염
-    COLD_WAVE(8L, "ColdWave"), // 한파
-    TYPHOON(9L, "Typhoon"); // 태풍
+    CLEAR(1L, "맑음"), // Clear
+    CLOUDY(2L, "흐림"), // Cloudy
+    RAIN(3L, "비"), // Rain
+    SNOW(4L, "눈"), // Snow
+    WINDY(5L, "바람"), // Windy
+    YELLOW_DUST(6L, "황사"), // YellowDust
+    HEATWAVE(7L, "폭염"), // Heatwave
+    COLD_WAVE(8L, "한파"), // ColdWave
+    TYPHOON(9L, "태풍"); // Typhoon
 
     private final Long id;
     private final String name;
 
-    Weather(Long id, String name) {
+    Weather(final Long id, final String name) {
         this.id = id;
         this.name = name;
     }
 
-    public static Weather findWeather(String weatherType) {
+    public static Weather findWeather(final String weatherType) {
         for (Weather weather : Weather.values()) {
             if (weather.getName().equalsIgnoreCase(weatherType)) {
                 return weather;

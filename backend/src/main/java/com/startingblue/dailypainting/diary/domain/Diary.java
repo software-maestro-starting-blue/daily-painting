@@ -13,7 +13,8 @@ public final class Diary {
     @Column(name = "diary_id")
     private Long id;
 
-    private int birthYear; // 추 후 VO로 수정 해도 될 듯?
+    // TODO: VO로 수정 가능
+    private int birthYear;
 
     private Gender gender;
 
@@ -29,9 +30,10 @@ public final class Diary {
     @Column(name = "met_people")
     private List<MetPerson> metPeople;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    @Column(columnDefinition = "TEXT") // 이미지 URL 글자수가 너무 길어서 columnDefinition 설정
+    @Column(columnDefinition = "TEXT")
     private String imageUrl;
 
     protected Diary() {
@@ -54,7 +56,7 @@ public final class Diary {
         return new Diary(birthYear, gender, weather, emotions, metPeople, content);
     }
 
-    public void setImagePath(String imageUrl) {
+    public void updateImageUrl(final String imageUrl) {
         this.imageUrl = imageUrl;
     }
 }

@@ -16,7 +16,7 @@ public final class DiaryService {
 
     private final DiaryRepository diaryRepository;
 
-    public Long save(DiarySaveRequest diarySaveRequest) {
+    public Long save(final DiarySaveRequest diarySaveRequest) {
         int birthYear = diarySaveRequest.getBirthYear();
         Gender gender = Gender.findGender(diarySaveRequest.getGender());
         Weather weather = Weather.findWeather(diarySaveRequest.getWeather());
@@ -30,8 +30,7 @@ public final class DiaryService {
                 weather,
                 emotions,
                 metPeople,
-                content
-        );
+                content);
 
         Diary savedDiary = diaryRepository.save(diary);
         log.info("save diary: {}", savedDiary);
@@ -39,11 +38,11 @@ public final class DiaryService {
         return savedDiary.getId();
     }
 
-    public void updateDiaryImagePath(Long diaryId, String imagePath) {
+    public void updateDiaryImagePath(final Long diaryId, final String imageUrl) {
         Diary diary = diaryRepository.findById(diaryId)
                 .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 일기 입니다."));
 
-        diary.setImagePath(imagePath);
+        diary.updateImageUrl(imageUrl);
         diaryRepository.save(diary);
     }
 

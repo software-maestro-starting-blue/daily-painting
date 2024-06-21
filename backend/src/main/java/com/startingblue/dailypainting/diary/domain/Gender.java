@@ -4,19 +4,19 @@ import lombok.Getter;
 
 @Getter
 public enum Gender {
-    MALE(1L, "Male"), // 남성
-    FEMALE(2L, "Female"); // 여성
+    MALE(1L, "남성"), // 남성
+    FEMALE(2L, "여성"); // 여성
 
 
     private final Long id;
     private final String name;
 
-    Gender(Long id, String name) {
+    Gender(final Long id, final String name) {
         this.id = id;
         this.name = name;
     }
 
-    public static Gender findGender(String genderType) {
+    public static Gender findGender(final String genderType) {
         for (Gender gender : Gender.values()) {
             if (gender.getName().equalsIgnoreCase(genderType)) {
                 return gender;
