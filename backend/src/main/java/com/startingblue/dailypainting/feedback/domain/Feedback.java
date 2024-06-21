@@ -1,6 +1,7 @@
 package com.startingblue.dailypainting.feedback.domain;
 
 import com.startingblue.dailypainting.diary.domain.Diary;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -27,8 +28,10 @@ public final class Feedback {
     @Max(5)
     private int imageSatisfaction;
 
+    @Column(length = 500)
     private String comment;
 
+    @Column(length = 500)
     private String favoriteCharacter;
 
     @OneToOne
