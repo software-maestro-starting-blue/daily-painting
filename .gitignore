@@ -24,6 +24,6 @@ hs_err_pid*
 replay_pid*
 
 .idea/
-backend/src/main/resources/*.properties
+*.properties
 backend/build
 backend/.gradle
