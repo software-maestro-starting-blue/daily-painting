@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from 'axios';
 
+const baseUrl = process.env.REACT_APP_BASE_URL;
+
 export default function FeedbackPage(diaryId: number) {
     const [serviceSatisfaction, setServiceSatisfaction] = useState(0);
     const [imageQuality, setImageQuality] = useState(0);
@@ -32,7 +34,7 @@ export default function FeedbackPage(diaryId: number) {
 
         if(status){
             const response =  await axios.post(
-                "http://localhost:8080/api/feedbacks",
+                `${baseUrl}/api/feedbacks`,
                 {serviceSatisfaction,
                     imageQuality,
                     imageSatisfaction,
