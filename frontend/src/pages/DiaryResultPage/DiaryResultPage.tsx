@@ -3,6 +3,9 @@ import './DiaryResultPage.css';
 
 import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout/DiaryImageLayout";
 import FeedbackRoutingButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
+import { useNavigate, NavigateFunction } from 'react-router-dom';
+
+const FeedbackPageUrl = '/feedback'; // TODO: Update this URL to the correct feedback page URL
 
 export interface DiaryResultPageProps {
     imageUrl: string,
@@ -12,7 +15,9 @@ export interface DiaryResultPageProps {
 const DiaryResultPage = (props: DiaryResultPageProps) => { 
     const {imageUrl, diaryId, ...rest} = props;
 
-    const handleImageDownloadClick: () => void = () => {
+    const nav: NavigateFunction = useNavigate();
+
+    const handleImageDownloadClick: () => void = () => { // TODO: Fix CORS policy issue
         console.log('Downloading image:', imageUrl);
         fetch(imageUrl, { method: 'GET' })
             .then((response) => response.blob())
@@ -30,8 +35,8 @@ const DiaryResultPage = (props: DiaryResultPageProps) => {
             });
     };
 
-    const handleFeedbackClick: () => void = () => {
-        // TODO: diaryId를 다음 페이지로 넘기기
+    const handleFeedbackClick: () => void = () => { // TODO: FeedbackPageUrl에 맞추어서 수정 필요
+        nav(FeedbackPageUrl, { state: { diaryId: diaryId } }); 
     };
 
     
