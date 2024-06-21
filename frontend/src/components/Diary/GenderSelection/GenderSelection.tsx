@@ -1,12 +1,12 @@
 import React, { ChangeEvent } from 'react';
 import './GenderSelection.css';
 
-export interface Props {
+export interface GenderSelectionProps {
   gender: string;
   setGender: (gender: string) => void;
 }
 
-const GenderSelection = (props: Props) => {
+const GenderSelection = (props: GenderSelectionProps) => {
   const { gender, setGender } = props;
 
   const handleGenderChange = (event: ChangeEvent<HTMLSelectElement>) => {

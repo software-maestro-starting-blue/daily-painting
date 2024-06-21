@@ -1,13 +1,13 @@
 import React from 'react';
 import './EmotionSelection.css';
 
-interface Props {
+export interface EmotionSelectionProps {
   emotions: string[];
   selectedEmotions: string[];
   handleEmotionChange: (emotion: string) => void;
 }
 
-const EmotionSelection = (props: Props) => {
+const EmotionSelection = (props: EmotionSelectionProps) => {
   const { emotions, selectedEmotions, handleEmotionChange } = props;
 
   const getEmotionIcon = (emotion: string) => {

@@ -2,12 +2,12 @@ import React, { ChangeEvent } from 'react';
 import '../App.css'
 import './BirthYearInput.css';
 
-interface Props {
+export interface BirthYearInputProps {
   birthYear: number;
   setBirthYear: (birthYear: number) => void;
 }
 
-const BirthYearInput = (props: Props) => {
+const BirthYearInput = (props: BirthYearInputProps) => {
   const { birthYear, setBirthYear } = props;
   
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {

@@ -1,13 +1,13 @@
 import React from 'react';
 import './MetPeopleSelection.css';
 
-interface Props {
+export interface MetPeopleSelectionProps {
   metPeople: string[];
   selectedPeople: string[];
   handleMetPeopleChange: (person: string) => void;
 }
 
-const MetPeopleSelection = (props: Props) => {
+const MetPeopleSelection = (props: MetPeopleSelectionProps) => {
   const { metPeople, selectedPeople, handleMetPeopleChange } = props;
 
   const getIcon = (person: string) => {

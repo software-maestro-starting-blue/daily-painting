@@ -1,11 +1,11 @@
 import React from 'react';
 import './SubmitButton.css';
 
-interface Props {
+export interface SubmitButtonProps {
   loading: boolean;
 }
 
-const SubmitButton = (props: Props) => {
+const SubmitButton = (props: SubmitButtonProps) => {
   const { loading } = props;
 
   return (

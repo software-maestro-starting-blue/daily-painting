@@ -1,13 +1,13 @@
 import React from 'react';
 import './WeatherSelection.css';
 
-interface Props {
+export interface WeatherSelectionProps {
   weathers: string[];
   selectedWeather: string;
   setWeather: (weather: string) => void;
 }
 
-const WeatherSelection = (props: Props) => {
+const WeatherSelection = (props: WeatherSelectionProps) => {
   const { weathers, selectedWeather, setWeather } = props;
   
   const handleWeatherChange = (weather: string) => {

@@ -8,13 +8,13 @@ import DiaryContent from '../../components/Diary/DiaryContent/DiaryContent';
 import BirthYearInput from '../../components/Diary/BirthYearInput/BirthYearInput';
 import SubmitButton from '../../components/Diary/SubmitButton/SubmitButton';
 
-interface DiaryFormResponse {
+export interface DiaryFormResponse {
   weathers: string[];
   emotions: string[];
   metPeople: string[];
 }
 
-interface DiarySaveRequest {
+export interface DiarySaveRequest {
   birthYear: number;
   gender: string;
   weather: string;
@@ -23,14 +23,14 @@ interface DiarySaveRequest {
   content: string;
 }
 
-interface DiarySavedResponse {
+export interface DiarySavedResponse {
   diaryId: number;
   imageUrl: string;
 }
 
 const DOMAIN_ADDRESS = 'http://localhost:8080';
 
-const DiaryFormPage: React.FC = () => {
+const DiaryFormPage = () => {
   const [formData, setFormData] = useState<DiaryFormResponse | null>(null);
   const [birthYear, setBirthYear] = useState<number>(new Date().getFullYear());
   const [gender, setGender] = useState<string>('');

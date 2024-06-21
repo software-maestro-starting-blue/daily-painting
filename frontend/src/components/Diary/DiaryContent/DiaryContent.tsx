@@ -1,12 +1,12 @@
 import React, { ChangeEvent } from 'react';
 import './DiaryContent.css';
 
-interface Props {
+export interface DiaryContentProps {
   content: string;
   setContent: (content: string) => void;
 }
 
-const DiaryContent = (props: Props) => {
+const DiaryContent = (props: DiaryContentProps) => {
   const { content, setContent } = props;
 
   return (
