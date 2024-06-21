@@ -15,7 +15,7 @@ export interface DiaryResultPageProps {
 const DiaryResultPage = (props: DiaryResultPageProps) => { 
     const {imageUrl, diaryId, ...rest} = props;
 
-    const nav: NavigateFunction = useNavigate();
+    //const nav: NavigateFunction = useNavigate();
 
     const handleImageDownloadClick: () => void = () => { // TODO: Fix CORS policy issue
         console.log('Downloading image:', imageUrl);
@@ -36,7 +36,7 @@ const DiaryResultPage = (props: DiaryResultPageProps) => {
     };
 
     const handleFeedbackClick: () => void = () => { // TODO: FeedbackPageUrl에 맞추어서 수정 필요
-        nav(FeedbackPageUrl, { state: { diaryId: diaryId } }); 
+        //nav(FeedbackPageUrl, { state: { diaryId: diaryId } }); 
     };
 
     
