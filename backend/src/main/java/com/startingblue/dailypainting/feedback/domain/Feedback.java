@@ -8,7 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public final class Feedback {
 
@@ -36,9 +39,6 @@ public final class Feedback {
 
     @OneToOne
     private Diary diary;
-
-    public Feedback() {
-    }
 
     public Feedback(final Long id, final int serviceSatisfaction, final int imageQuality, final int imageSatisfaction, final String comment, final String favoriteCharacter, final Diary diary) {
         this.id = id;
