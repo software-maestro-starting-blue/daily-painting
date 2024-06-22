@@ -31,23 +31,20 @@
     cursor: pointer;
     flex-direction: column;
     transition: transform 0.2s;
-
 }
 
 .emotion-option:hover {
     transform: scale(1.1);
-  }
-  
+}
+
 .emotionz-icon {
     width: 40px;
     height: 40px;
     margin-bottom: 5px;
 }
-  
 
 .emotion-selection .emotion-option.selected {
     border: 2px solid blue;
-
 }
 
 .emotion-selection .emotion-icon {

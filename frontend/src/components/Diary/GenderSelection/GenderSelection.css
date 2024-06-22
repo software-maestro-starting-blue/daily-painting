@@ -4,12 +4,12 @@
     align-items: flex-start;
     margin: 20px;
 }
-  
+
 .gender-label {
     font-weight: bold;
     margin-bottom: 5px;
 }
-  
+
 .gender-select {
     padding: 10px;
     font-size: 16px;
@@ -17,7 +17,7 @@
     max-width: 200px;
     margin-bottom: 10px;
 }
-  
+
 .selected-gender {
     margin-top: 10px;
     font-style: italic;
