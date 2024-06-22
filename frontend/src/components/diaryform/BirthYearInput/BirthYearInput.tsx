@@ -10,7 +10,7 @@ export interface BirthYearInputProps {
 const BirthYearInput = (props: BirthYearInputProps) => {
     const { birthYear, setBirthYear } = props;
 
-    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleBirthYearChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setBirthYear(Number(e.target.value));
     };
 
@@ -34,7 +34,7 @@ const BirthYearInput = (props: BirthYearInputProps) => {
             <select
                 className="birth-year-select"
                 value={birthYear}
-                onChange={handleChange}
+                onChange={handleBirthYearChange}
             >
                 {generateYearOptions()}
             </select>

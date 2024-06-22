@@ -9,14 +9,16 @@ export interface DiaryContentProps {
 const DiaryContent = (props: DiaryContentProps) => {
     const { content, setContent } = props;
 
+    const handleDiaryContentChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setContent(e.target.value);
+    };
+
     return (
         <div className="diary-content">
             <label>한줄일기</label>
             <textarea
                 value={content}
-                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                    setContent(e.target.value)
-                }
+                onChange={() => handleDiaryContentChange}
             ></textarea>
         </div>
     );
