@@ -7,10 +7,12 @@ import com.startingblue.dailypainting.feedback.domain.FeedbackRepository;
 import com.startingblue.dailypainting.feedback.dto.FeedbackSaveRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
-public final class FeedbackService {
+public class FeedbackService {
 
     private static final String DIARY_NOT_FOUND_EXCEPTION_MESSAGE = "존재하지 않는 일기";
     private final FeedbackRepository feedbackRepository;
