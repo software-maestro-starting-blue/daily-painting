@@ -27,3 +27,5 @@ replay_pid*
 backend/src/main/resources/*.properties
 backend/build
 backend/.gradle
+
+*.yml
