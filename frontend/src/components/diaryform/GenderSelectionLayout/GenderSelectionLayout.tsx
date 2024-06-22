@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import "./GenderSelection.css";
+import "./GenderSelectionLayout.css";
 
 export interface GenderSelectionProps {
     gender: string;

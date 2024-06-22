@@ -1,5 +1,5 @@
 import React from "react";
-import "./EmotionSelection.css";
+import "./EmotionSelectionLayout.css";
 
 export interface EmotionSelectionProps {
     emotions: string[];

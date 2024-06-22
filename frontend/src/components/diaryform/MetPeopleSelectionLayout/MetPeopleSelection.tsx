@@ -1,5 +1,5 @@
 import React from "react";
-import "./MetPeopleSelection.css";
+import "./MetPeopleSelectionLayout.css";
 
 export interface MetPeopleSelectionProps {
     metPeople: string[];

@@ -1,15 +1,15 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import axios from "axios";
-import GenderSelection from "../../components/Diary/GenderSelection/GenderSelection";
-import WeatherSelection from "../../components/Diary/WeatherSelection/WeatherSelection";
-import EmotionSelection from "../../components/Diary/EmotionSelection/EmotionSelection";
-import MetPeopleSelection from "../../components/Diary/MetPeopleSelection/MetPeopleSelection";
-import DiaryContent from "../../components/Diary/DiaryContent/DiaryContent";
-import BirthYearInput from "../../components/Diary/BirthYearInput/BirthYearInput";
-import SubmitButton from "../../components/Diary/SubmitButton/SubmitButton";
+import GenderSelection from "../../components/diaryform/GenderSelectionLayout/GenderSelectionLayout";
+import WeatherSelection from "../../components/diaryform/WeatherSelectionLayout/WeatherSelectionLayout";
+import EmotionSelection from "../../components/diaryform/EmotionSelectionLayout/EmotionSelectionLayout";
+import MetPeopleSelection from "../../components/diaryform/MetPeopleSelectionLayout/MetPeopleSelection";
+import DiaryContent from "../../components/diaryform/DiaryContent/DiaryContent";
+import BirthYearInput from "../../components/diaryform/BirthYearInput/BirthYearInput";
+import SubmitButton from "../../components/diaryform/SubmitButton/SubmitButton";
 
 export interface DiaryFormResponse {
-    eathers: string[];
+    weathers: string[];
     emotions: string[];
     metPeople: string[];
 }

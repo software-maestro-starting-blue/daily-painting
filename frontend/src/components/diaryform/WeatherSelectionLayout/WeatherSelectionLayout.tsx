@@ -1,5 +1,5 @@
 import React from "react";
-import "./WeatherSelection.css";
+import "./WeatherSelectionLayout.css";
 
 export interface WeatherSelectionProps {
     weathers: string[];
