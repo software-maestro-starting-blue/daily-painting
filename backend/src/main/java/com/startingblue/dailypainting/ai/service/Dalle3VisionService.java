@@ -3,14 +3,14 @@ package com.startingblue.dailypainting.ai.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-import static com.startingblue.dailypainting.ai.util.OpenAIAPIGenerator.responseBodyFromAPI;
-
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class Dalle3VisionService implements VisionService {
@@ -22,12 +22,14 @@ public class Dalle3VisionService implements VisionService {
     private static final String IMAGE_SIZE = "1024x1024";
 
     @Value("${prompt.dalle3.vision}")
-    private static String VISION_PROMPT;
+    private String VISION_PROMPT;
+
+    private final OpenAIAPIGenerator openAIAPIGenerator;
 
     public String sendSynopsisToVision(final String synopsis) {
         String visionPrompt = createVisionPromptFromSynopsis(synopsis);
         String requestBody = createRequestBody(visionPrompt);
-        String responseBody = responseBodyFromAPI(requestBody, VISION_API_URL);
+        String responseBody = openAIAPIGenerator.responseBodyFromAPI(requestBody, VISION_API_URL);
         String imageUrl = extractImageUrlFromVisionResponse(responseBody);
         log.info("Vision imageURL: {}", imageUrl);
         return imageUrl;

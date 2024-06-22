@@ -1,20 +1,22 @@
-package com.startingblue.dailypainting.ai.util;
+package com.startingblue.dailypainting.ai.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
+@Component
 public class OpenAIAPIGenerator {
 
     private static final RestTemplate restTemplate = new RestTemplate();
     private static final String BEARER_TOKEN_PREFIX = "Bearer ";
 
     @Value("${key.openai}")
-    private static String apiKey;
+    private String apiKey;
 
-    public static String responseBodyFromAPI(final String requestBody, final String url) {
+    public String responseBodyFromAPI(final String requestBody, final String url) {
         HttpHeaders headers = createHeaders();
         log.info("requestBody: \n{}", requestBody);
         HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
@@ -30,7 +32,7 @@ public class OpenAIAPIGenerator {
         return responseEntity.getBody();
     }
 
-    private static HttpHeaders createHeaders() {
+    private HttpHeaders createHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.AUTHORIZATION, BEARER_TOKEN_PREFIX + apiKey);
         headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);

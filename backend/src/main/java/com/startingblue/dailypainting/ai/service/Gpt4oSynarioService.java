@@ -4,14 +4,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-import static com.startingblue.dailypainting.ai.util.OpenAIAPIGenerator.responseBodyFromAPI;
-
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class Gpt4oSynarioService implements SynarioService {
@@ -19,12 +19,14 @@ public class Gpt4oSynarioService implements SynarioService {
     private static final String LLM_API_URL = "https://api.openai.com/v1/chat/completions";
     private static final String LLM_MODEL = "gpt-4o";
 
-    @Value("{prompt.gpt4o.system}")
-    private static String LLM_SYSTEM_PROMPT;
+    private final OpenAIAPIGenerator openAIAPIGenerator;
+
+    @Value("${prompt.gpt4o.system}")
+    private String LLM_SYSTEM_PROMPT;
 
     public JsonNode sendDiaryToLLM(final String diaryContent) {
         String requestBody = createRequestBody(diaryContent);
-        String responseBody = responseBodyFromAPI(requestBody, LLM_API_URL);
+        String responseBody = openAIAPIGenerator.responseBodyFromAPI(requestBody, LLM_API_URL);
         JsonNode synopsis = extractJsonFromLLMResponse(responseBody);
         log.info("LLM synopsis: {}", synopsis.toPrettyString());
         return synopsis;

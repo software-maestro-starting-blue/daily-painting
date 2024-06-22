@@ -14,16 +14,17 @@ import java.util.List;
 public class PromptDiaryConvertService implements DiaryConvertService {
 
     @Value("${prompt.promptconvert.diary}")
-    private static String DIARY_PROMPT;
+    private String DIARY_PROMPT;
 
     @Value("${prompt.promptconvert.person}")
-    private static String PERSON_PROMPT;
+    private String PERSON_PROMPT;
 
     @Value("${prompt.promptconvert.scene}")
-    private static String SCENE_PROMPT;
+    private String SCENE_PROMPT;
 
     @Override
     public String convertDiarySaveRequestToString(final DiarySaveRequest diarySaveRequest) {
+        System.out.println("DIARY_PROMPT = " + DIARY_PROMPT);
         return String.format(DIARY_PROMPT,
                 diarySaveRequest.getWeather(),
                 String.join(", ", diarySaveRequest.getEmotions()),
