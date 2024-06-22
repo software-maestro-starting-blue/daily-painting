@@ -6,6 +6,7 @@ import FeedbackRoutingButtonLayout from "../../components/diaryresult/FeedbackRo
 import { useNavigate, NavigateFunction } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
 
+// TODO: 추후에는 상수로 분리하여 관리할 수 있도록 수정
 const FeedbackPageUrl = '/feedback'; // TODO: Update this URL to the correct feedback page URL
 const ApiUrl = 'http://localhost:8080/proxy'; // TODO: Update this URL to the correct API URL
 
