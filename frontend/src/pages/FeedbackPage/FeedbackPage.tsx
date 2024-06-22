@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {FormEvent, useState} from "react";
 import axios from 'axios';
 import Rating from '../../components/feedback/Rating'
 import Comment from "../../components/feedback/Comment";
@@ -18,8 +18,9 @@ const FeedbackPage = (props: FeedbackPageProps) => {
     const [imageSatisfaction, setImageSatisfaction] = useState<number>(0);
     const [comment, setComment] = useState<string>("");
     const [favoriteCharacter, setFavoriteCharacter] = useState<string>("");
+    const MAX_CONTENT_LENGTH = 500;
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         let status = true;
@@ -28,12 +29,12 @@ const FeedbackPage = (props: FeedbackPageProps) => {
             status = false;
         }
 
-        if(comment.length > 500) {
+        if(comment.length > MAX_CONTENT_LENGTH) {
             window.alert('추가 의견의 길이는 500자를 넘을 수 없습니다.');
             status = false;
         }
 
-        if(favoriteCharacter.length > 500) {
+        if(favoriteCharacter.length > MAX_CONTENT_LENGTH) {
             window.alert('좋아하는 캐릭터의 길이는 500자를 넘을 수 없습니다.');
             status = false;
         }
