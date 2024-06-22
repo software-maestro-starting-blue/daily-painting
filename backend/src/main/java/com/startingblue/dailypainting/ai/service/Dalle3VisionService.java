@@ -4,12 +4,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 import static com.startingblue.dailypainting.ai.util.OpenAIAPIGenerator.responseBodyFromAPI;
 
 @Slf4j
+@Service
 public class Dalle3VisionService implements VisionService {
 
     private static final String VISION_API_URL = "https://api.openai.com/v1/images/generations";
@@ -17,7 +20,9 @@ public class Dalle3VisionService implements VisionService {
     private static final String VISION_MODEL = "dall-e-3";
     private static final int IMAGE_COUNT = 1;
     private static final String IMAGE_SIZE = "1024x1024";
-    private static final String VISION_PROMPT = ""; //TODO: 추후에 지워야 함
+
+    @Value("${prompt.dalle3.vision}")
+    private static String VISION_PROMPT;
 
     public String sendSynopsisToVision(final String synopsis) {
         String visionPrompt = createVisionPromptFromSynopsis(synopsis);

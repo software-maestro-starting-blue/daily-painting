@@ -11,7 +11,7 @@ public class OpenAIAPIGenerator {
     private static final RestTemplate restTemplate = new RestTemplate();
     private static final String BEARER_TOKEN_PREFIX = "Bearer ";
 
-    @Value("${openai.key}")
+    @Value("${key.openai}")
     private static String apiKey;
 
     public static String responseBodyFromAPI(final String requestBody, final String url) {

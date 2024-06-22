@@ -5,17 +5,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 import static com.startingblue.dailypainting.ai.util.OpenAIAPIGenerator.responseBodyFromAPI;
 
 @Slf4j
+@Service
 public class Gpt4oSynarioService implements SynarioService {
 
     private static final String LLM_API_URL = "https://api.openai.com/v1/chat/completions";
     private static final String LLM_MODEL = "gpt-4o";
-    private static final String LLM_SYSTEM_PROMPT = ""; //TODO: 추후에 지워야 함
+
+    @Value("{prompt.gpt4o.system}")
+    private static String LLM_SYSTEM_PROMPT;
 
     public JsonNode sendDiaryToLLM(final String diaryContent) {
         String requestBody = createRequestBody(diaryContent);
