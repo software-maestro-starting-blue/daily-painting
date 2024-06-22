@@ -1,6 +1,6 @@
 package com.startingblue.dailypainting.diary.controller;
 
-import com.startingblue.dailypainting.openai.service.OpenAIService;
+import com.startingblue.dailypainting.ai.service.AIDiaryService;
 import com.startingblue.dailypainting.diary.domain.Emotion;
 import com.startingblue.dailypainting.diary.domain.MetPerson;
 import com.startingblue.dailypainting.diary.domain.Weather;
@@ -21,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 public final class DiaryController {
 
     private final DiaryService diaryService;
-    private final OpenAIService openAIService;
+    private final AIDiaryService openAIService;
 
     @GetMapping("/api/diaries")
     public ResponseEntity<DiaryFormResponse> diaryHome() {
@@ -38,7 +38,7 @@ public final class DiaryController {
                                                           UriComponentsBuilder uriBuilder) {
         Long savedDiaryId = diaryService.save(diarySaveRequest);
 
-        CompletableFuture<String> future = openAIService.sendDiaryToChatGpt(diarySaveRequest.getContent());
+        CompletableFuture<String> future = openAIService.generateImageFromDiary(diarySaveRequest);
         String imageUrl = future.join();
 
         diaryService.updateDiaryImagePath(savedDiaryId, imageUrl);
