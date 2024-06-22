@@ -3,7 +3,12 @@ import axios from 'axios';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
-export default function FeedbackPage(diaryId: number) {
+export interface FeedbackPageProps {
+    diaryId: number
+}
+
+export default function FeedbackPage(props: FeedbackPageProps) {
+    const {diaryId, ...rest} = props;
     const [serviceSatisfaction, setServiceSatisfaction] = useState(0);
     const [imageQuality, setImageQuality] = useState(0);
     const [imageSatisfaction, setImageSatisfaction] = useState(0);
