@@ -4,8 +4,10 @@ import './DiaryResultPage.css';
 import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout/DiaryImageLayout";
 import FeedbackRoutingButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
 import { useNavigate, NavigateFunction } from 'react-router-dom';
+import { MouseEventHandler } from 'react';
 
 const FeedbackPageUrl = '/feedback'; // TODO: Update this URL to the correct feedback page URL
+const ApiUrl = 'http://localhost:8080/proxy'; // TODO: Update this URL to the correct API URL
 
 export interface DiaryResultPageProps {
     imageUrl: string,
@@ -15,14 +17,18 @@ export interface DiaryResultPageProps {
 const DiaryResultPage = (props: DiaryResultPageProps) => { 
     const {imageUrl, diaryId, ...rest} = props;
 
-    //const nav: NavigateFunction = useNavigate();
+    // const nav: NavigateFunction = useNavigate();
 
-    const handleImageDownloadClick: () => void = () => { // TODO: Fix CORS policy issue
-        console.log('Downloading image:', imageUrl);
-        fetch(imageUrl, { method: 'GET' })
-            .then((response) => response.blob())
-            .then((blob) => {
-                console.log('Downloaded image:', blob);
+    const handleImageDownloadClick: MouseEventHandler<HTMLButtonElement> = () => { // TODO: Fix CORS policy issue
+        const proxyUrl = ApiUrl + `?url=${encodeURIComponent(imageUrl)}`;
+        fetch(proxyUrl, { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                return response.blob();
+            })
+            .then(blob => {
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = url;
@@ -30,13 +36,13 @@ const DiaryResultPage = (props: DiaryResultPageProps) => {
                 link.click();
                 URL.revokeObjectURL(url);
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Error downloading image:', error);
             });
     };
 
-    const handleFeedbackClick: () => void = () => { // TODO: FeedbackPageUrl에 맞추어서 수정 필요
-        //nav(FeedbackPageUrl, { state: { diaryId: diaryId } }); 
+    const handleFeedbackClick: MouseEventHandler<HTMLButtonElement> = () => { // TODO: FeedbackPageUrl에 맞추어서 수정 필요
+        // nav(FeedbackPageUrl, { state: { diaryId: diaryId } }); 
     };
 
     

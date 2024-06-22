@@ -1,8 +1,9 @@
+import { MouseEventHandler } from "react";
 import "./DiaryImageLayout.css";
 
 export interface DiaryImageLayoutProps {
     imageUrl: string,
-    onImageDownloadClick: () => void
+    onImageDownloadClick: MouseEventHandler<HTMLButtonElement>
 }
 
 
