@@ -39,7 +39,7 @@ public enum Emotion {
 
         for (String emotionType : emotionTypes) {
             for (Emotion emotion : Emotion.values()) {
-                if (emotionType.trim().equalsIgnoreCase(emotion.getName())) {
+                if (emotionType.trim().equalsIgnoreCase(emotion.name())) {
                     matchingEmotions.add(emotion);
                     break;
                 }

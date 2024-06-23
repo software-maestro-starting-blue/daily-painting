@@ -7,6 +7,7 @@ import MetPeopleSelectionLayout from '../../components/diaryform/MetPeopleSelect
 import DiaryContent from '../../components/diaryform/DiaryContent/DiaryContent';
 import BirthYearInput from '../../components/diaryform/BirthYearInput/BirthYearInput';
 import SubmitButton from '../../components/diaryform/SubmitButton/SubmitButton';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 
 interface DiaryFormResponse {
@@ -31,15 +32,17 @@ interface DiarySavedResponse {
 
 const DOMAIN_ADDRESS = 'http://localhost:8080';
 
-const DiaryFormPage: React.FC = () => {
+const DiaryFormPage = () => {
   const [formData, setFormData] = useState<DiaryFormResponse | null>(null);
   const [birthYear, setBirthYear] = useState<number>(new Date().getFullYear());
-  const [gender, setGender] = useState<string>('');
+  const [gender, setGender] = useState<string>('남성');
   const [weather, setWeather] = useState<string>('');
   const [emotions, setEmotions] = useState<string[]>([]);
   const [metPeople, setMetPeople] = useState<string[]>([]);
   const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+
+  const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
     const fetchFormData = async () => {
@@ -91,6 +94,13 @@ const DiaryFormPage: React.FC = () => {
       console.log(`location: ${location}`);
       console.log(`diaryId: ${diaryId}`);
       console.log(`imageUrl: ${imageUrl}`);
+
+      navigate("/diary/show", {
+        state: {
+          diaryId: diaryId,
+          imageUrl: imageUrl
+        }
+      });
 
     } catch (error) {
       console.error('Error saving diary:', error);

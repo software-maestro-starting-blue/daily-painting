@@ -17,7 +17,7 @@ import java.net.URL;
 @RestController
 public class ProxyController {
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(originPatterns = "*")
     @GetMapping("/proxy")
     public ResponseEntity<byte[]> proxy(@RequestParam("url") String urlString) throws IOException {
         URL url = new URL(urlString);

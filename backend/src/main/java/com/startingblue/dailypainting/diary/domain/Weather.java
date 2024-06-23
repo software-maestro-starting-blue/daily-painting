@@ -28,7 +28,7 @@ public enum Weather {
 
     public static Weather findWeather(final String weatherType) {
         for (Weather weather : Weather.values()) {
-            if (weather.getName().equalsIgnoreCase(weatherType)) {
+            if (weather.name().equalsIgnoreCase(weatherType)) {
                 return weather;
             }
         }
