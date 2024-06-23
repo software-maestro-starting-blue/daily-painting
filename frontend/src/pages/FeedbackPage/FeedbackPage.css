@@ -1,0 +1,41 @@
+.feedback-page-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 48px 16px;
+}
+
+.feedback-page-inner-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.feedback-page-h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.feedback-page-p {
+    color: #4b5563;
+}
+
+.feedback-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.feedback-page-form-button {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: #6366f1;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
