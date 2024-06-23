@@ -1,13 +1,13 @@
 import React from "react";
 import "./WeatherSelectionLayout.css";
 
-export interface WeatherSelectionProps {
+export interface WeatherSelectionLayoutProps {
     weathers: string[];
     selectedWeather: string;
     setWeather: (weather: string) => void;
 }
 
-const WeatherSelectionLayout = (props: WeatherSelectionProps) => {
+const WeatherSelectionLayout = (props: WeatherSelectionLayoutProps) => {
     const { weathers, selectedWeather, setWeather } = props;
 
     return (
@@ -29,7 +29,7 @@ const getWeatherIcon = (weather: string) => {
     try {
         return require(`../icon/weather/${weather}.png`);
     } catch (error) {
-        return require("../icon/weather/default.png");
+        return require("../icon/weather/DEFAULT.png");
     }
 };
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import GenderSelection from '../../components/Diary/GenderSelection';
-import WeatherSelection from '../../components/Diary/WeatherSelection';
-import EmotionSelection from '../../components/Diary/EmotionSelection';
-import MetPeopleSelection from '../../components/Diary/MetPeopleSelection';
-import DiaryContent from '../../components/Diary/DiaryContent';
-import BirthYearInput from '../../components/Diary/BirthYearInput';
-import SubmitButton from '../../components/Diary/SubmitButton';
+import GenderSelectionLayout from '../../components/diaryform/GenderSelectionLayout/GenderSelectionLayout';
+import WeatherSelectionLayout from '../../components/diaryform/WeatherSelectionLayout/WeatherSelectionLayout';
+import EmotionSelectionLayout from '../../components/diaryform/EmotionSelectionLayout/EmotionSelectionLayout';
+import MetPeopleSelectionLayout from '../../components/diaryform/MetPeopleSelectionLayout/MetPeopleSelectionLayout';
+import DiaryContent from '../../components/diaryform/DiaryContent/DiaryContent';
+import BirthYearInput from '../../components/diaryform/BirthYearInput/BirthYearInput';
+import SubmitButton from '../../components/diaryform/SubmitButton/SubmitButton';
 
 interface DiaryFormResponse {
   weathers: string[];
@@ -106,21 +106,21 @@ const DiaryFormPage: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <BirthYearInput birthYear={birthYear} setBirthYear={setBirthYear} />
-      <GenderSelection gender={gender} setGender={setGender} />
-      <WeatherSelection
+      <GenderSelectionLayout gender={gender} setGender={setGender} />
+      <WeatherSelectionLayout
         weathers={formData.weathers}
         selectedWeather={weather}
         setWeather={setWeather}
       />
-      <EmotionSelection
+      <EmotionSelectionLayout
         emotions={formData.emotions}
         selectedEmotions={emotions}
-        handleEmotionChange={handleEmotionChange}
+        onEmotionClick={handleEmotionChange}
       />
-      <MetPeopleSelection
+      <MetPeopleSelectionLayout
         metPeople={formData.metPeople}
         selectedPeople={metPeople}
-        handleMetPeopleChange={handleMetPeopleChange}
+        onMetPeopleClick={handleMetPeopleChange}
       />
       <DiaryContent content={content} setContent={setContent} />
       <SubmitButton loading={loading} />

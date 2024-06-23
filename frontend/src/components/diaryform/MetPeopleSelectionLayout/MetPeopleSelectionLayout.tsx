@@ -1,13 +1,13 @@
 import React from "react";
 import "./MetPeopleSelectionLayout.css";
 
-export interface MetPeopleSelectionProps {
+export interface MetPeopleSelectionLayoutProps {
     metPeople: string[];
     selectedPeople: string[];
     onMetPeopleClick: (person: string) => void;
 }
 
-const MetPeopleSelection = (props: MetPeopleSelectionProps) => {
+const MetPeopleSelectionLayout = (props: MetPeopleSelectionLayoutProps) => {
     const { metPeople, selectedPeople, onMetPeopleClick } = props;
 
     return (
@@ -34,7 +34,7 @@ const getIcon = (person: string) => {
     try {
         return require(`../icon/metperson/${person}.png`);
     } catch (error) {
-        return require("../icon/metperson/default.png");
+        return require("../icon/metperson/DEFAULT.png");
     }
 };
 
@@ -56,4 +56,4 @@ const PersonOption = (
     </div>
 );
 
-export default MetPeopleSelection;
+export default MetPeopleSelectionLayout;

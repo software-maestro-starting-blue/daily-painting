@@ -1,12 +1,12 @@
 import React, { ChangeEvent } from "react";
 import "./GenderSelectionLayout.css";
 
-export interface GenderSelectionProps {
+export interface GenderSelectionLayoutProps {
     gender: string;
     setGender: (gender: string) => void;
 }
 
-const GenderSelection = (props: GenderSelectionProps) => {
+const GenderSelectionLayout = (props: GenderSelectionLayoutProps) => {
     const { gender, setGender } = props;
 
     const handleGenderChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -29,4 +29,4 @@ const GenderSelection = (props: GenderSelectionProps) => {
     );
 };
 
-export default GenderSelection;
+export default GenderSelectionLayout;

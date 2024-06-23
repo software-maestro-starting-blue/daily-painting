@@ -1,13 +1,13 @@
 import React from "react";
 import "./EmotionSelectionLayout.css";
 
-export interface EmotionSelectionProps {
+export interface EmotionSelectionLayoutProps {
     emotions: string[];
     selectedEmotions: string[];
     onEmotionClick: (emotion: string) => void;
 }
 
-const EmotionSelection = (props: EmotionSelectionProps) => {
+const EmotionSelectionLayout = (props: EmotionSelectionLayoutProps) => {
     const { emotions, selectedEmotions, onEmotionClick } = props;
 
     return (
@@ -34,7 +34,7 @@ const getEmotionIcon = (emotion: string) => {
     try {
         return require(`../icon/emotion/${emotion}.png`);
     } catch (error) {
-        return require("../icon/emotion/default.png");
+        return require("../icon/emotion/DEFAULT.png");
     }
 };
 
@@ -59,4 +59,4 @@ const EmotionOption = (
         <label className="emotion-option-label">{emotion}</label>
     </div>
 );
-export default EmotionSelection;
+export default EmotionSelectionLayout;

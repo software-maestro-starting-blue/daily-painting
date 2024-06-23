@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from "react";
-import "../App.css";
 import "./BirthYearInput.css";
 
 export interface BirthYearInputProps {
