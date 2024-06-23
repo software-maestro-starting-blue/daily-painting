@@ -38,7 +38,7 @@ public enum Weather {
 
     public static List<String> findAllNames() {
         return Arrays.stream(Weather.values())
-                .map(Weather::getName)
+                .map(Weather::name)
                 .collect(Collectors.toList());
     }
 }

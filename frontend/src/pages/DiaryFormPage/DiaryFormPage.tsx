@@ -105,8 +105,11 @@ const DiaryFormPage: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <BirthYearInput birthYear={birthYear} setBirthYear={setBirthYear} />
-      <GenderSelectionLayout gender={gender} setGender={setGender} />
+      <div style={{display: 'flex', justifyContent: 'center'} }>
+        <BirthYearInput birthYear={birthYear} setBirthYear={setBirthYear} />
+        <GenderSelectionLayout gender={gender} setGender={setGender} />
+      </div>
+
       <WeatherSelectionLayout
         weathers={formData.weathers}
         selectedWeather={weather}
