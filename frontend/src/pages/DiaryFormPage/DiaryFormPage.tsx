@@ -8,6 +8,7 @@ import DiaryContent from '../../components/diaryform/DiaryContent/DiaryContent';
 import BirthYearInput from '../../components/diaryform/BirthYearInput/BirthYearInput';
 import SubmitButton from '../../components/diaryform/SubmitButton/SubmitButton';
 
+
 interface DiaryFormResponse {
   weathers: string[];
   emotions: string[];
@@ -109,7 +110,6 @@ const DiaryFormPage: React.FC = () => {
         <BirthYearInput birthYear={birthYear} setBirthYear={setBirthYear} />
         <GenderSelectionLayout gender={gender} setGender={setGender} />
       </div>
-
       <WeatherSelectionLayout
         weathers={formData.weathers}
         selectedWeather={weather}
