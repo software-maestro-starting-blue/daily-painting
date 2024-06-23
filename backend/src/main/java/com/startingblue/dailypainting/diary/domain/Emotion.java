@@ -55,7 +55,7 @@ public enum Emotion {
 
     public static List<String> findAllNames() {
         return Arrays.stream(Emotion.values())
-                .map(Emotion::getName)
+                .map(Emotion::name)
                 .collect(Collectors.toList());
     }
 }

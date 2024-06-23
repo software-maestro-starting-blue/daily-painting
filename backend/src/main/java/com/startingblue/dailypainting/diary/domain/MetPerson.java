@@ -44,7 +44,7 @@ public enum MetPerson {
 
     public static List<String> findAllNames() {
         return Arrays.stream(MetPerson.values())
-                .map(MetPerson::getName)
+                .map(MetPerson::name)
                 .collect(Collectors.toList());
     }
 }

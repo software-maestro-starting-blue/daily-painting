@@ -1,0 +1,27 @@
+.submit-button {
+    display: flex;
+    margin: 20px;
+}
+
+.submit-button button {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 340px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.submit-button button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
