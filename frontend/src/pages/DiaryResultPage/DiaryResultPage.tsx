@@ -3,22 +3,21 @@ import './DiaryResultPage.css';
 
 import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout/DiaryImageLayout";
 import FeedbackRoutingButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
-import { useNavigate, NavigateFunction } from 'react-router-dom';
+import { useNavigate, NavigateFunction, useLocation } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
 
 // TODO: 추후에는 상수로 분리하여 관리할 수 있도록 수정
 const FeedbackPageUrl = '/feedback'; // TODO: Update this URL to the correct feedback page URL
 const ApiUrl = 'http://localhost:8080/proxy'; // TODO: Update this URL to the correct API URL
 
-export interface DiaryResultPageProps {
-    imageUrl: string,
-    diaryId: number
-}
+const DiaryResultPage = () => { 
+    const {state} = useLocation();
+    const {imageUrl, diaryId, ...rest} = state;
 
-const DiaryResultPage = (props: DiaryResultPageProps) => { 
-    const {imageUrl, diaryId, ...rest} = props;
+    console.log("imageUrl: " + imageUrl)
+    console.log("diaryId: " + diaryId)
 
-    // const nav: NavigateFunction = useNavigate();
+    const navigate: NavigateFunction = useNavigate();
 
     const handleImageDownloadClick: MouseEventHandler<HTMLButtonElement> = () => { // TODO: Fix CORS policy issue
         const proxyUrl = ApiUrl + `?url=${encodeURIComponent(imageUrl)}`;
@@ -43,7 +42,7 @@ const DiaryResultPage = (props: DiaryResultPageProps) => {
     };
 
     const handleFeedbackClick: MouseEventHandler<HTMLButtonElement> = () => { // TODO: FeedbackPageUrl에 맞추어서 수정 필요
-        // nav(FeedbackPageUrl, { state: { diaryId: diaryId } }); 
+        navigate(FeedbackPageUrl, { state: { diaryId: diaryId } }); 
     };
 
     

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import "./DiaryContent.css";
 
 export interface DiaryContentProps {
@@ -9,7 +9,7 @@ export interface DiaryContentProps {
 const DiaryContent = (props: DiaryContentProps) => {
     const { content, setContent } = props;
 
-    const handleDiaryContentChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleDiaryContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setContent(e.target.value);
     };
 
@@ -18,7 +18,7 @@ const DiaryContent = (props: DiaryContentProps) => {
             <label>한줄일기</label>
             <textarea
                 value={content}
-                onChange={() => handleDiaryContentChange}
+                onChange={handleDiaryContentChange}
             ></textarea>
         </div>
     );

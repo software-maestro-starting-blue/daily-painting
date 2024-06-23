@@ -4,15 +4,14 @@ import Rating from '../../components/feedback/Rating'
 import Comment from "../../components/feedback/Comment";
 import FavoriteCharacter from "../../components/feedback/FavoriteCharacter";
 import "./FeedbackPage.css"
+import { useLocation } from "react-router-dom";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
-export interface FeedbackPageProps {
-    diaryId: number
-}
+const FeedbackPage = () => {
+    const {state} = useLocation();
+    const {diaryId, ...rest} = state;
 
-const FeedbackPage = (props: FeedbackPageProps) => {
-    const {diaryId, ...rest} = props;
     const [serviceSatisfaction, setServiceSatisfaction] = useState<number>(0);
     const [imageQuality, setImageQuality] = useState<number>(0);
     const [imageSatisfaction, setImageSatisfaction] = useState<number>(0);

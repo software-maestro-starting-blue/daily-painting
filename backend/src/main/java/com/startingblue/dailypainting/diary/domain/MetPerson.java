@@ -28,7 +28,7 @@ public enum MetPerson {
 
         for (String metPersonType : metPersonTypes) {
             for (MetPerson metPerson : MetPerson.values()) {
-                if (metPersonType.trim().equalsIgnoreCase(metPerson.getName())) {
+                if (metPersonType.trim().equalsIgnoreCase(metPerson.name())) {
                     matchingMetPeople.add(metPerson);
                     break;
                 }
