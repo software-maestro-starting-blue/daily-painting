@@ -14,9 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
@@ -39,7 +37,7 @@ public final class DiaryController {
 
     @PostMapping("/api/diaries")
     public ResponseEntity<?> createDiary(@Valid @RequestBody DiarySaveRequest diarySaveRequest,
-                                                          BindingResult bindingResult, UriComponentsBuilder uriBuilder) {
+                                         BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return ResponseEntity
@@ -55,10 +53,7 @@ public final class DiaryController {
         diaryService.updateDiaryImagePath(savedDiaryId, imageUrl);
 
         DiarySavedResponse diarySavedResponse = new DiarySavedResponse(savedDiaryId, imageUrl);
-        URI location = uriBuilder.path("/diaries/show")
-                .build()
-                .toUri();
 
-        return ResponseEntity.created(location).body(diarySavedResponse);
+        return ResponseEntity.ok(diarySavedResponse);
     }
 }
