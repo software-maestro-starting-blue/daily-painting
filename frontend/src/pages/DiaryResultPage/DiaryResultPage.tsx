@@ -4,7 +4,7 @@ import './DiaryResultPage.css';
 import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout/DiaryImageLayout";
 import FeedbackRoutingButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
 import { useNavigate, NavigateFunction, useLocation } from 'react-router-dom';
-import { MouseEventHandler, useEffect, useRef } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 
 // TODO: 추후에는 상수로 분리하여 관리할 수 있도록 수정
 const FEEDBACK_PAGE_URL = '/feedback'; // TODO: Update this URL to the correct feedback page URL
@@ -21,7 +21,7 @@ const DiaryResultPage = () => {
                 console.error("state: " + state);
                 navigate("/", { replace: true });
             }
-    }, []); // 렌더링 이후 실행
+    }, [navigate, state]); // 렌더링 이후 실행
 
     if (!state || !state.imageUrl || !state.diaryId) {
         alert("잘못된 접근입니다. 첫 화면으로 이동합니다.");
