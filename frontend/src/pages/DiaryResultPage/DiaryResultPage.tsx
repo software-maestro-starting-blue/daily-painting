@@ -20,6 +20,13 @@ const DiaryResultPage = () => {
 
     const navigate: NavigateFunction = useNavigate();
 
+    if (imageUrl == null || diaryId == null) {
+        console.error("imageUrl or diaryId is null");
+        alert("잘못된 접근입니다. 첫 화면으로 이동합니다.");
+        navigate("/");
+        return null;
+    }
+
 
     const handleImageDownloadClick: MouseEventHandler<HTMLButtonElement> = () => {
         const proxyUrl = API_URL + `?url=${encodeURIComponent(imageUrl)}`;
