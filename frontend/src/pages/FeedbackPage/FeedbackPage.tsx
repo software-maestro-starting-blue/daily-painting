@@ -6,7 +6,7 @@ import FavoriteCharacter from "../../components/feedback/favoritecharacter/Favor
 import "./FeedbackPage.css"
 import { NavigateFunction, useNavigate, useLocation } from 'react-router-dom';
 
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 const FeedbackPage = () => {
     const {state} = useLocation();
