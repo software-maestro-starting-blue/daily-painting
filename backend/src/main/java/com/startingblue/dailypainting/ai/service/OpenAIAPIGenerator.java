@@ -26,8 +26,7 @@ public class OpenAIAPIGenerator {
             responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
             log.info("OpenAI Response: {}", responseEntity.getBody());
         } catch (Exception e) {
-            log.error("OpenAI API 호출 에러", e);
-            throw new RuntimeException("OpenAI API 호출 에러", e);
+            throw new InternalError("OpenAI API 호출 에러", e);
         }
         return responseEntity.getBody();
     }

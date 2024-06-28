@@ -1,6 +1,8 @@
 package com.startingblue.dailypainting.ai.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.startingblue.dailypainting.ai.service.scenario.ScenarioService;
+import com.startingblue.dailypainting.ai.service.vision.VisionService;
 import com.startingblue.dailypainting.diary.dto.DiarySaveRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class AIDiaryService {
 
-    private final SynarioService aiSynarioService;
+    private final ScenarioService aiScenarioService;
     private final VisionService aiVisionService;
     private final DiaryConvertService diaryConvertService;
 
@@ -24,13 +26,15 @@ public class AIDiaryService {
 
         String diaryContent = diaryConvertService.convertDiarySaveRequestToString(diarySaveRequest);
 
-        JsonNode synopsis = aiSynarioService.sendDiaryToLLM(diaryContent);
+        JsonNode scenario = aiScenarioService.sendDiaryToLLM(diaryContent);
 
-        String synopsisString = diaryConvertService.convertSynopsisJsonToString(synopsis);
+        String scenarioString = diaryConvertService.convertScenarioJsonToString(scenario);
 
-        String imageUrl = aiVisionService.sendSynopsisToVision(synopsisString);
+        String imageUrl = aiVisionService.sendScenarioToVision(scenarioString);
 
         return CompletableFuture.completedFuture(imageUrl);
     }
+
+
 
 }
