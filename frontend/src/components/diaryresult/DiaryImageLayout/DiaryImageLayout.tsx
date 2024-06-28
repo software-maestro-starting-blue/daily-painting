@@ -2,13 +2,13 @@ import { MouseEventHandler } from "react";
 import "./DiaryImageLayout.css";
 
 // TODO: 추후에는 상수로 분리하여 관리할 수 있도록 수정
-const ImageWidth = 512;
-const ImageHeight = 512;
+const IMAGE_WIDTH = 512;
+const IMAGE_HEIGHT = 512;
 
 
 export interface DiaryImageLayoutProps {
-    imageUrl: string,
-    onImageDownloadClick: MouseEventHandler<HTMLButtonElement>
+    imageUrl: string;
+    onImageDownloadClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const DiaryImageLayout = (props: DiaryImageLayoutProps) => {
@@ -19,10 +19,10 @@ const DiaryImageLayout = (props: DiaryImageLayoutProps) => {
             <img
                 src={imageUrl}
                 style={{
-                    aspectRatio: ImageWidth / ImageHeight,
+                    aspectRatio: IMAGE_WIDTH / IMAGE_HEIGHT,
                     objectFit: "cover"
                 }}
-                width={ImageWidth} height={ImageHeight}
+                width={IMAGE_WIDTH} height={IMAGE_HEIGHT}
                 className="diary-image"
             />
             <button className="diary-image-download-button" onClick={onImageDownloadClick}>
