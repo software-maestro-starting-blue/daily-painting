@@ -4,7 +4,7 @@ import './DiaryResultPage.css';
 import DiaryImageLayout from "../../components/diaryresult/DiaryImageLayout/DiaryImageLayout";
 import FeedbackRoutingButtonLayout from "../../components/diaryresult/FeedbackRoutingButtonLayout/FeedbackRoutingButtonLayout";
 import { useNavigate, NavigateFunction, useLocation } from 'react-router-dom';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 
 // TODO: 추후에는 상수로 분리하여 관리할 수 있도록 수정
 const FEEDBACK_PAGE_URL = '/feedback'; // TODO: Update this URL to the correct feedback page URL
@@ -12,20 +12,31 @@ const API_URL = 'http://localhost:8080/proxy'; // TODO: Update this URL to the c
 
 const DiaryResultPage = () => {
     const {state} = useLocation();
+
+    const navigate: NavigateFunction = useNavigate();
+
+    useEffect(() => {
+        if (state == undefined || 
+            state.imageUrl == undefined || 
+            state.diaryId == undefined) {
+                console.error("state, imageUrl, or diaryId is null");
+                console.error("state: " + state);
+                navigate("/");
+            }
+        }, []); // 첫 렌더링 이후 한 번만 실행
+
+    if (state == undefined || 
+        state.imageUrl == undefined || 
+        state.diaryId == undefined) {
+        alert("잘못된 접근입니다. 첫 화면으로 이동합니다.");
+        return null;
+    }
+
     const {imageUrl, diaryId, ...rest} = state;
 
     console.log("DiaryResultPage 접속")
     console.log("imageUrl: " + imageUrl)
     console.log("diaryId: " + diaryId)
-
-    const navigate: NavigateFunction = useNavigate();
-
-    if (imageUrl == null || diaryId == null) {
-        console.error("imageUrl or diaryId is null");
-        alert("잘못된 접근입니다. 첫 화면으로 이동합니다.");
-        navigate("/");
-        return null;
-    }
 
 
     const handleImageDownloadClick: MouseEventHandler<HTMLButtonElement> = () => {
