@@ -10,7 +10,7 @@ const FeedbackRoutingButtonLayout = (props: FeedbackRoutingButtonLayoutProps) =>
     
     return (
         <button 
-            className="feedbackbutton" 
+            className="feedback-button" 
             onClick={onFeedbackClick}
         >
             Feedback

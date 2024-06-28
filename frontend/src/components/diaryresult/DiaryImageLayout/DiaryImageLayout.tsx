@@ -15,7 +15,7 @@ const DiaryImageLayout = (props: DiaryImageLayoutProps) => {
     const {imageUrl, onImageDownloadClick, ...rest} = props;
     
     return (
-        <div className="DiaryImageLayout">
+        <div className="diary-image-layout">
             <img
                 src={imageUrl}
                 style={{
@@ -23,9 +23,9 @@ const DiaryImageLayout = (props: DiaryImageLayoutProps) => {
                     objectFit: "cover"
                 }}
                 width={ImageWidth} height={ImageHeight}
-                className="diaryimage"
+                className="diary-image"
             />
-            <button className="diaryimagedownloadbutton" onClick={onImageDownloadClick}>
+            <button className="diary-image-download-button" onClick={onImageDownloadClick}>
                 Download
             </button>
         </div>

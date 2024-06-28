@@ -14,12 +14,13 @@ const DiaryResultPage = () => {
     const {state} = useLocation();
     const {imageUrl, diaryId, ...rest} = state;
 
+    console.log("DiaryResultPage 접속")
     console.log("imageUrl: " + imageUrl)
     console.log("diaryId: " + diaryId)
 
     const navigate: NavigateFunction = useNavigate();
 
-    const handleImageDownloadClick: MouseEventHandler<HTMLButtonElement> = () => { // TODO: Fix CORS policy issue
+    const handleImageDownloadClick: MouseEventHandler<HTMLButtonElement> = () => {
         const proxyUrl = ApiUrl + `?url=${encodeURIComponent(imageUrl)}`;
         fetch(proxyUrl, { method: 'GET' })
             .then(response => {
@@ -47,7 +48,7 @@ const DiaryResultPage = () => {
 
     
     return (
-    <div className="DiaryResultPage">
+    <div className="diary-result-page">
         <DiaryImageLayout imageUrl={imageUrl} onImageDownloadClick={handleImageDownloadClick}/>
         <FeedbackRoutingButtonLayout onFeedbackClick={handleFeedbackClick}/>
     </div>
