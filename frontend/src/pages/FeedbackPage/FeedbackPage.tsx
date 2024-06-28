@@ -74,8 +74,8 @@ const FeedbackPage = () => {
                         rating={imageSatisfaction}
                         setRating={setImageSatisfaction}
                     />
-                    <Comment comment={comment} setComment={setComment}></Comment>
-                    <FavoriteCharacter favoriteCharacter={favoriteCharacter} setFavoriteCharacter={setFavoriteCharacter}></FavoriteCharacter>
+                    <Comment comment={comment} setComment={setComment}/>
+                    <FavoriteCharacter favoriteCharacter={favoriteCharacter} setFavoriteCharacter={setFavoriteCharacter}/>
                     <button className="feedback-page-form-button" type="submit">
                         피드백 제출
                     </button>
