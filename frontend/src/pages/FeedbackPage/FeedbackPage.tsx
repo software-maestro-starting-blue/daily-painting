@@ -1,8 +1,8 @@
 import {FormEvent, useState} from "react";
 import axios from 'axios';
-import Rating from '../../components/feedback/Rating'
-import Comment from "../../components/feedback/Comment";
-import FavoriteCharacter from "../../components/feedback/FavoriteCharacter";
+import Rating from '../../components/feedback/rating/Rating'
+import Comment from "../../components/feedback/comment/Comment";
+import FavoriteCharacter from "../../components/feedback/favoritecharacter/FavoriteCharacter";
 import "./FeedbackPage.css"
 import { useLocation } from "react-router-dom";
 
