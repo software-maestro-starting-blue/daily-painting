@@ -1,6 +1,6 @@
 package com.startingblue.dailypainting.feedback.domain.vo;
 
-import com.startingblue.dailypainting.diary.exception.FavoriteCharacterLengthOverException;
+import com.startingblue.dailypainting.feedback.exception.FavoriteCharacterLengthOverException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;

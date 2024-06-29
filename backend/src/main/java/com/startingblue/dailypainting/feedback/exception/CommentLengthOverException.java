@@ -1,4 +1,4 @@
-package com.startingblue.dailypainting.diary.exception;
+package com.startingblue.dailypainting.feedback.exception;
 
 public final class CommentLengthOverException extends RuntimeException {
 

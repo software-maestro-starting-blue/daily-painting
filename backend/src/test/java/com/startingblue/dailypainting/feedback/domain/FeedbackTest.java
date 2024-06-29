@@ -3,11 +3,11 @@ package com.startingblue.dailypainting.feedback.domain;
 import com.startingblue.dailypainting.diary.domain.Diary;
 import com.startingblue.dailypainting.diary.domain.Gender;
 import com.startingblue.dailypainting.diary.domain.Weather;
-import com.startingblue.dailypainting.diary.exception.CommentLengthOverException;
-import com.startingblue.dailypainting.diary.exception.FavoriteCharacterLengthOverException;
-import com.startingblue.dailypainting.diary.exception.ImageQualityValueException;
-import com.startingblue.dailypainting.diary.exception.ImageSatisfactionValueException;
-import com.startingblue.dailypainting.diary.exception.ServiceSatisfactionValueException;
+import com.startingblue.dailypainting.feedback.exception.CommentLengthOverException;
+import com.startingblue.dailypainting.feedback.exception.FavoriteCharacterLengthOverException;
+import com.startingblue.dailypainting.feedback.exception.ImageQualityValueException;
+import com.startingblue.dailypainting.feedback.exception.ImageSatisfactionValueException;
+import com.startingblue.dailypainting.feedback.exception.ServiceSatisfactionValueException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

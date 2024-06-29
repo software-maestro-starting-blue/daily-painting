@@ -1,6 +1,6 @@
 package com.startingblue.dailypainting.feedback.domain.vo;
 
-import com.startingblue.dailypainting.diary.exception.ServiceSatisfactionValueException;
+import com.startingblue.dailypainting.feedback.exception.ServiceSatisfactionValueException;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

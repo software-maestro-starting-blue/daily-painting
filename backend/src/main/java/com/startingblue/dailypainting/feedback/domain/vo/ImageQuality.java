@@ -1,6 +1,6 @@
 package com.startingblue.dailypainting.feedback.domain.vo;
 
-import com.startingblue.dailypainting.diary.exception.ImageQualityValueException;
+import com.startingblue.dailypainting.feedback.exception.ImageQualityValueException;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
