@@ -23,18 +23,17 @@ public class AIDiaryService {
 
     @Async
     public CompletableFuture<String> generateImageFromDiary(final DiarySaveRequest diarySaveRequest) {
-
         String diaryContent = diaryConvertService.convertDiarySaveRequestToString(diarySaveRequest);
 
-        JsonNode scenario = aiScenarioService.sendDiaryToLLM(diaryContent);
+        // 비동기적으로 시나리오 생성
+        CompletableFuture<JsonNode> scenarioFuture = CompletableFuture.supplyAsync(() -> {
+            return aiScenarioService.sendDiaryToLLM(diaryContent);
+        });
 
-        String scenarioString = diaryConvertService.convertScenarioJsonToString(scenario);
-
-        String imageUrl = aiVisionService.sendScenarioToVision(scenarioString);
-
-        return CompletableFuture.completedFuture(imageUrl);
+        // 비동기적으로 이미지 URL 생성
+        return scenarioFuture.thenApplyAsync(scenario -> {
+            String scenarioString = diaryConvertService.convertScenarioJsonToString(scenario);
+            return aiVisionService.sendScenarioToVision(scenarioString);
+        });
     }
-
-
-
 }
