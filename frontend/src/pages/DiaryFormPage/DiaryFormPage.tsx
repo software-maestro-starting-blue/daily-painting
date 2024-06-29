@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import axios from "axios";
 import "./DiaryFormPage.css";
 import GenderSelectionLayout from "../../components/diaryform/GenderSelectionLayout/GenderSelectionLayout";
@@ -31,7 +31,7 @@ interface DiarySavedResponse {
     imageUrl: string;
 }
 
-const DOMAIN_ADDRESS = "http://localhost:8080";
+const DOMAIN_ADDRESS = process.env.REACT_APP_API_BASE_URL;
 
 const DiaryFormPage = () => {
     const [formData, setFormData] = useState<DiaryFormResponse | null>(null);
@@ -57,6 +57,7 @@ const DiaryFormPage = () => {
                 );
                 setFormData(response.data);
             } catch (error) {
+                alert("서버에 문제가 생겼습니다.");
                 console.error("Error fetching form data:", error);
             }
         };
@@ -67,7 +68,7 @@ const DiaryFormPage = () => {
     const handleEmotionChange = (emotion: string) => {
         setEmotions((prev) =>
             prev.includes(emotion)
-                ? prev.filter((e) => e !== emotion)
+                ? prev.filter((event) => event !== emotion)
                 : [...prev, emotion]
         );
     };
@@ -78,6 +79,16 @@ const DiaryFormPage = () => {
                 ? prev.filter((p) => p !== person)
                 : [...prev, person]
         );
+    };
+
+    const handlePersonalInformationAgreementClick = () => {
+        setPersonalInformationAgreement(!personalInformationAgreement);
+    };
+
+    const handleDiaryContentChange = (
+        event: ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        setContent(event.target.value);
     };
 
     const validate = () => {
@@ -116,10 +127,6 @@ const DiaryFormPage = () => {
         return true;
     };
 
-    const handlePersonalInformationAgreementClick = () => {
-        setPersonalInformationAgreement(!personalInformationAgreement);
-    };
-
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
@@ -156,7 +163,7 @@ const DiaryFormPage = () => {
             });
         } catch (error) {
             console.error("Error saving diary:", error);
-            alert("Failed to save diary");
+            alert("일기 저장에 실패했습니다. 버튼을 다시 눌러주세요.");
         } finally {
             setLoading(false);
         }
@@ -169,16 +176,13 @@ const DiaryFormPage = () => {
     return (
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
             <div className="header">
-                <BirthYearInput
-                    birthYear={birthYear}
-                    setBirthYear={setBirthYear}
-                />
-                <GenderSelectionLayout gender={gender} setGender={setGender} />
+                <BirthYearInput birthYear={birthYear} onChange={setBirthYear} />
+                <GenderSelectionLayout gender={gender} onChange={setGender} />
             </div>
             <WeatherSelectionLayout
                 weathers={formData.weathers}
                 selectedWeather={weather}
-                setWeather={setWeather}
+                onWeatherClick={setWeather}
             />
             <EmotionSelectionLayout
                 emotions={formData.emotions}
@@ -192,16 +196,16 @@ const DiaryFormPage = () => {
             />
             <DiaryContent
                 content={content}
-                setContent={setContent}
+                onContentChange={handleDiaryContentChange}
                 isShaking={content.length > 200}
             />
             <PersonalInformationLayout
                 isCheckd={personalInformationAgreement}
                 onClick={handlePersonalInformationAgreementClick}
-            ></PersonalInformationLayout>
+            />
             <SubmitButton
                 loading={loading}
-                disabled={!personalInformationAgreement}
+                isDisabled={!personalInformationAgreement}
             />
         </form>
     );

@@ -18,7 +18,7 @@ const MetPeopleSelectionLayout = (props: MetPeopleSelectionLayoutProps) => {
                     <PersonOption
                         key={index}
                         person={person}
-                        selectedPeople={selectedPeople}
+                        isSelected={selectedPeople.includes(person)}
                         onMetPeopleClick={onMetPeopleClick}
                     />
                 ))}
@@ -30,34 +30,32 @@ const MetPeopleSelectionLayout = (props: MetPeopleSelectionLayoutProps) => {
     );
 };
 
-const getIcon = (person: string) => {
-    try {
-        return require(`../icon/metperson/${person}.png`);
-    } catch (error) {
-        return require("../icon/metperson/DEFAULT.png");
-    }
-};
-
 export interface PersonOptionProps {
     person: string;
-    selectedPeople: string[];
+    isSelected: boolean;
     onMetPeopleClick: (person: string) => void;
 }
 
 const PersonOption = (props: PersonOptionProps) => {
-    const { person, selectedPeople, onMetPeopleClick } = props;
+    const { person, isSelected, onMetPeopleClick } = props;
 
     return (
         <div
-            className={`people-option ${
-                selectedPeople.includes(person) ? "selected" : ""
-            }`}
+            className={`people-option ${isSelected ? "selected" : ""}`}
             onClick={() => onMetPeopleClick(person)}
         >
             <img src={getIcon(person)} alt={person} className="people-icon" />
             <label className="met-people-option-label">{person}</label>
         </div>
     );
+};
+
+const getIcon = (person: string) => {
+    try {
+        return require(`../icon/metperson/${person}.png`);
+    } catch (error) {
+        return require("../icon/metperson/DEFAULT.png");
+    }
 };
 
 export default MetPeopleSelectionLayout;
