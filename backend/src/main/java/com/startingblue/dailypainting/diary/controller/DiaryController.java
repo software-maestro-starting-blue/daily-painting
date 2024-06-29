@@ -39,12 +39,6 @@ public final class DiaryController {
     public ResponseEntity<?> createDiary(@Valid @RequestBody DiarySaveRequest diarySaveRequest,
                                          BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
-        }
-
         Long savedDiaryId = diaryService.save(diarySaveRequest);
 
         CompletableFuture<String> future = openAIService.generateImageFromDiary(diarySaveRequest);
