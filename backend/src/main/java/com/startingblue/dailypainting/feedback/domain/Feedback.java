@@ -2,6 +2,7 @@ package com.startingblue.dailypainting.feedback.domain;
 
 import com.startingblue.dailypainting.diary.domain.Diary;
 import com.startingblue.dailypainting.feedback.domain.vo.Comment;
+import com.startingblue.dailypainting.feedback.domain.vo.Event;
 import com.startingblue.dailypainting.feedback.domain.vo.FavoriteCharacter;
 import com.startingblue.dailypainting.feedback.domain.vo.ImageQuality;
 import com.startingblue.dailypainting.feedback.domain.vo.ImageSatisfaction;
@@ -12,10 +13,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public final class Feedback {
@@ -42,7 +45,10 @@ public final class Feedback {
     @OneToOne
     private Diary diary;
 
-    public Feedback(final int serviceSatisfaction, final int imageQuality, final int imageSatisfaction, final String comment, final String favoriteCharacter, final Diary diary) {
+    @Embedded
+    private Event event;
+
+    public Feedback(final int serviceSatisfaction, final int imageQuality, final int imageSatisfaction, final String comment, final String favoriteCharacter, final Diary diary, final boolean isEventAgreed, final String eventPhoneNumber) {
         validate(diary);
         this.serviceSatisfaction = new ServiceSatisfaction(serviceSatisfaction);
         this.imageQuality = new ImageQuality(imageQuality);
@@ -50,6 +56,7 @@ public final class Feedback {
         this.comment = new Comment(comment);
         this.favoriteCharacter = new FavoriteCharacter(favoriteCharacter);
         this.diary = diary;
+        this.event = Event.createEventPhoneNumberWithAgreeOrUnknown(isEventAgreed, eventPhoneNumber);
     }
 
     public void validate(final Diary diary) throws IllegalArgumentException {

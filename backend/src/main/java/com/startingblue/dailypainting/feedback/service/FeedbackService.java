@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class FeedbackService {
 
+    private static final String HYPHEN = "-";
     private final FeedbackRepository feedbackRepository;
     private final DiaryRepository diaryRepository;
 
@@ -22,13 +23,18 @@ public class FeedbackService {
 
         final Diary diary = diaryRepository.findById(feedbackSaveRequest.getDiaryId())
                 .orElseThrow(DiaryNotFoundException::new);
+        final String[] phoneNumberElements = feedbackSaveRequest.getPhoneNumber();
+        final String phoneNumber = String.join(HYPHEN, phoneNumberElements);
+
         final Feedback feedback = new Feedback(
                 feedbackSaveRequest.getServiceSatisfaction(),
                 feedbackSaveRequest.getImageQuality(),
                 feedbackSaveRequest.getImageSatisfaction(),
                 feedbackSaveRequest.getComment(),
                 feedbackSaveRequest.getFavoriteCharacter(),
-                diary);
+                diary,
+                feedbackSaveRequest.isEventAgreed(),
+                phoneNumber);
 
         feedbackRepository.save(feedback);
     }

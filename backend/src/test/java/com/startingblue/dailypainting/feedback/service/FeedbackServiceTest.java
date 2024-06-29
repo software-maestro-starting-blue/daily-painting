@@ -29,7 +29,8 @@ class FeedbackServiceTest {
         //given
         final Diary diary = Diary.createDiary(2000, Gender.FEMALE, Weather.CLEAR, new ArrayList<>(), new ArrayList<>(), "");
         final Diary savedDiary = diaryRepository.save(diary);
-        final FeedbackSaveRequest feedbackSaveRequest = new FeedbackSaveRequest(1, 1, 1, "좋습니다.", "없습니다.", savedDiary.getId());
+        final String[] phoneNumber = new String[3];
+        final FeedbackSaveRequest feedbackSaveRequest = new FeedbackSaveRequest(1, 1, 1, "좋습니다.", "없습니다.", savedDiary.getId(), true, phoneNumber);
 
         //when & then
         assertDoesNotThrow(
@@ -41,7 +42,8 @@ class FeedbackServiceTest {
     public void 일기가_없으면_피드백_생성을_실패한다() {
         //given
         final Long notExistDiaryId = -1L;
-        final FeedbackSaveRequest feedbackSaveRequest = new FeedbackSaveRequest(1, 1, 1, "좋습니다.", "없습니다.", notExistDiaryId);
+        final String[] phoneNumber = new String[3];
+        final FeedbackSaveRequest feedbackSaveRequest = new FeedbackSaveRequest(1, 1, 1, "좋습니다.", "없습니다.", notExistDiaryId, true, phoneNumber);
 
         //when & then
         assertThatThrownBy(

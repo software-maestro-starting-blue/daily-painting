@@ -8,11 +8,13 @@ import com.startingblue.dailypainting.feedback.exception.FavoriteCharacterLength
 import com.startingblue.dailypainting.feedback.exception.ImageQualityValueException;
 import com.startingblue.dailypainting.feedback.exception.ImageSatisfactionValueException;
 import com.startingblue.dailypainting.feedback.exception.ServiceSatisfactionValueException;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -27,7 +29,7 @@ class FeedbackTest {
 
         //when & then
         assertThatThrownBy(
-                () -> new Feedback(serviceSatisfaction, 1, 1, "", "", diary)
+                () -> new Feedback(serviceSatisfaction, 1, 1, "", "", diary, false, null)
         ).isInstanceOf(ServiceSatisfactionValueException.class);
     }
 
@@ -39,7 +41,7 @@ class FeedbackTest {
 
         //when & then
         assertDoesNotThrow(
-                () -> new Feedback(serviceSatisfaction, 1, 1, "", "", diary)
+                () -> new Feedback(serviceSatisfaction, 1, 1, "", "", diary, false, null)
         );
     }
 
@@ -51,7 +53,7 @@ class FeedbackTest {
 
         //when & then
         assertThatThrownBy(
-                () -> new Feedback(1, imageQuality, 1, "", "", diary)
+                () -> new Feedback(1, imageQuality, 1, "", "", diary, false, null)
         ).isInstanceOf(ImageQualityValueException.class);
     }
 
@@ -63,7 +65,7 @@ class FeedbackTest {
 
         //when & then
         assertDoesNotThrow(
-                () -> new Feedback(1, imageQuality, 1, "", "", diary)
+                () -> new Feedback(1, imageQuality, 1, "", "", diary, false, null)
         );
     }
 
@@ -75,7 +77,7 @@ class FeedbackTest {
 
         //when & then
         assertThatThrownBy(
-                () -> new Feedback(1, 1, imageSatisfaction, "", "", diary)
+                () -> new Feedback(1, 1, imageSatisfaction, "", "", diary, false, null)
         ).isInstanceOf(ImageSatisfactionValueException.class);
     }
 
@@ -87,7 +89,7 @@ class FeedbackTest {
 
         //when & then
         assertDoesNotThrow(
-                () -> new Feedback(1, 1, imageSatisfaction, "", "", diary)
+                () -> new Feedback(1, 1, imageSatisfaction, "", "", diary, false, null)
         );
     }
 
@@ -105,7 +107,7 @@ class FeedbackTest {
 
         //when & then
         assertThatThrownBy(
-                () -> new Feedback(1, 1, 1, comment, "", diary)
+                () -> new Feedback(1, 1, 1, comment, "", diary, false, null)
         ).isInstanceOf(CommentLengthOverException.class);
     }
 
@@ -123,7 +125,7 @@ class FeedbackTest {
 
         //when & then
         assertDoesNotThrow(
-                () -> new Feedback(1, 1, 1, comment, "", diary)
+                () -> new Feedback(1, 1, 1, comment, "", diary, false, null)
         );
     }
 
@@ -141,7 +143,7 @@ class FeedbackTest {
 
         //when & then
         assertThatThrownBy(
-                () -> new Feedback(1, 1, 1, "", favoriteCharacter, diary)
+                () -> new Feedback(1, 1, 1, "", favoriteCharacter, diary, false, null)
         ).isInstanceOf(FavoriteCharacterLengthOverException.class);
     }
 
@@ -159,7 +161,30 @@ class FeedbackTest {
 
         //when & then
         assertDoesNotThrow(
-                () -> new Feedback(1, 1, 1, "", favoriteCharacter, diary)
+                () -> new Feedback(1, 1, 1, "", favoriteCharacter, diary, false, null)
         );
+    }
+
+    @Test
+    public void 이벤트에_동의하지_않는_경우_전화번호가_UNKNOWN으로_저장된다() {
+        //given
+        final Diary diary = Diary.createDiary(2000, Gender.FEMALE, Weather.CLEAR, new ArrayList<>(), new ArrayList<>(), "");
+        final Feedback feedback = new Feedback(1, 1, 1, "", "", diary, false, "000-0000-0000");
+
+        //when & then
+        assertThat(feedback.getEvent().isEventAgreed()).isFalse();
+        assertThat(feedback.getEvent().getPhoneNumber()).isEqualTo("UNKNOWN");
+    }
+
+    @Test
+    public void 이벤트에_동의하는_경우_전화번호가_저장된다() {
+        //given
+        final Diary diary = Diary.createDiary(2000, Gender.FEMALE, Weather.CLEAR, new ArrayList<>(), new ArrayList<>(), "");
+        final String eventPhoneNumber = "000-0000-0000";
+        final Feedback feedback = new Feedback(1, 1, 1, "", "", diary, true, eventPhoneNumber);
+
+        //when & then
+        assertThat(feedback.getEvent().isEventAgreed()).isTrue();
+        assertThat(feedback.getEvent().getPhoneNumber()).isEqualTo(eventPhoneNumber);
     }
 }
