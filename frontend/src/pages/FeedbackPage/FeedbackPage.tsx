@@ -1,10 +1,11 @@
 import {FormEvent, useState} from "react";
 import axios from 'axios';
-import Rating from '../../components/feedback/rating/Rating'
-import Comment from "../../components/feedback/comment/Comment";
+import Rating from '../../components/feedback/rating/Rating';
+import Input from "../../components/feedback/comment/Comment";
 import FavoriteCharacter from "../../components/feedback/favoritecharacter/FavoriteCharacter";
-import "./FeedbackPage.css"
-import { NavigateFunction, useNavigate, useLocation } from 'react-router-dom';
+import "./FeedbackPage.css";
+import {NavigateFunction, useNavigate, useLocation} from 'react-router-dom';
+import EventFormLayout from "../../components/feedback/eventformlayout/EventFormLayout";
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
@@ -17,40 +18,69 @@ const FeedbackPage = () => {
     const [imageSatisfaction, setImageSatisfaction] = useState<number>(0);
     const [comment, setComment] = useState<string>("");
     const [favoriteCharacter, setFavoriteCharacter] = useState<string>("");
+    const [isEventAgreed, setIsEventAgreed] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState<string[]>(["010", "", ""]);
     const MAX_CONTENT_LENGTH = 500;
     const navigate: NavigateFunction = useNavigate();
+
+    const handleEventAgreementClick = () => {
+        setIsEventAgreed(!isEventAgreed);
+        if(isEventAgreed) {
+            setPhoneNumber(["010", "", ""]);
+        }
+    };
+
+    const handlePhoneNumberChange = (index: number, value: string) => {
+        const newPhoneNumber = [...phoneNumber];
+        newPhoneNumber[index] = value;
+        setPhoneNumber(newPhoneNumber);
+    };
+
+    const validatePhoneNumber = (phoneNumber: string[]): boolean => {
+        const patterns = [/^\d{3}$/, /^\d{4}$/, /^\d{4}$/];
+
+        return phoneNumber.length === 3 && phoneNumber.every((num, index) => patterns[index].test(num));
+    };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         let status = true;
-        if(serviceSatisfaction === 0 || imageQuality === 0 || imageSatisfaction === 0) {
+        if (serviceSatisfaction === 0 || imageQuality === 0 || imageSatisfaction === 0) {
             window.alert('별점은 한 개 이상이어야 합니다.');
             status = false;
         }
 
-        if(comment.length > MAX_CONTENT_LENGTH) {
+        if (comment.length > MAX_CONTENT_LENGTH) {
             window.alert('추가 의견의 길이는 500자를 넘을 수 없습니다.');
             status = false;
         }
 
-        if(favoriteCharacter.length > MAX_CONTENT_LENGTH) {
+        if (favoriteCharacter.length > MAX_CONTENT_LENGTH) {
             window.alert('좋아하는 캐릭터의 길이는 500자를 넘을 수 없습니다.');
             status = false;
         }
 
-        if(status){
-            const response =  await axios.post(
+        if (isEventAgreed && !validatePhoneNumber(phoneNumber)) {
+            window.alert('전화번호를 한번 더 확인해주세요.');
+            status = false;
+        }
+
+        if (status) {
+            await axios.post(
                 `${baseUrl}/api/feedbacks`,
-                {serviceSatisfaction,
+                {
+                    serviceSatisfaction,
                     imageQuality,
                     imageSatisfaction,
                     comment,
                     favoriteCharacter,
-                    diaryId}
+                    diaryId,
+                    isEventAgreed,
+                    phoneNumber
+                }
             );
-            navigate('/feedback-thanks', {
-            });
+            navigate('/feedback-thanks');
         }
     };
 
@@ -77,10 +107,16 @@ const FeedbackPage = () => {
                         rating={imageSatisfaction}
                         setRating={setImageSatisfaction}
                     />
-                    <Comment comment={comment} setComment={setComment}/>
-                    <FavoriteCharacter favoriteCharacter={favoriteCharacter} setFavoriteCharacter={setFavoriteCharacter}/>
+                    <Input comment={comment} setComment={setComment}/>
+                    <FavoriteCharacter favoriteCharacter={favoriteCharacter}
+                                       setFavoriteCharacter={setFavoriteCharacter}/>
+
+                    <EventFormLayout isEventAgreed={isEventAgreed} phoneNumber={phoneNumber}
+                                     handleEventAgreementClick={handleEventAgreementClick}
+                                     handlePhoneNumberChange={handlePhoneNumberChange}/>
+
                     <button className="feedback-page-form-button" type="submit">
-                        피드백 제출
+                        {isEventAgreed ? '이벤트 참여 및 피드백 제출' : '피드백 제출'}
                     </button>
                 </form>
             </div>
