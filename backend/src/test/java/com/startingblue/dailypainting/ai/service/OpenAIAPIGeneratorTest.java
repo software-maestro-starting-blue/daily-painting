@@ -1,5 +1,6 @@
 package com.startingblue.dailypainting.ai.service;
 
+import com.startingblue.dailypainting.ai.exception.OpenAIError;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,7 +45,7 @@ class OpenAIAPIGeneratorTest {
         String url = "https://api.openai.com/v1/chat/completions";
 
         // When & Then
-        assertThrows(InternalError.class, () -> {
+        assertThrows(OpenAIError.class, () -> {
             openAIAPIGenerator.responseBodyFromAPI(requestBody, url);
         });
     }
@@ -80,7 +81,7 @@ class OpenAIAPIGeneratorTest {
         String url = "https://api.openai.com/v1/images/generations";
 
         // When & Then
-        assertThrows(InternalError.class, () -> {
+        assertThrows(OpenAIError.class, () -> {
             openAIAPIGenerator.responseBodyFromAPI(requestBody, url);
         });
     }
@@ -92,7 +93,7 @@ class OpenAIAPIGeneratorTest {
         String url = "";
 
         // When & Then
-        assertThrows(InternalError.class, () -> {
+        assertThrows(OpenAIError.class, () -> {
             openAIAPIGenerator.responseBodyFromAPI(requestBody, url);
         });
     }

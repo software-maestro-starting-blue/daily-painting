@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class AIExceptionControllerAdvice {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(RuntimeException.class)
-    public AIErrorResponse handleRuntimeException(RuntimeException e) {
+    @ExceptionHandler(AIError.class)
+    public AIErrorResponse handleRuntimeException(AIError e) {
         log.error("[exceptionHandle] : {}", e.getMessage());
-        return new AIErrorResponse("INTERNAL_SERVER_ERROR", e.getMessage());
+        return new AIErrorResponse("INTERNAL_SERVER_ERROR", "AI 구성 중 에러 발생");
     }
 
 

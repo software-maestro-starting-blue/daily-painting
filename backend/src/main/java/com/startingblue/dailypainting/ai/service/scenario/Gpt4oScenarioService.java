@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.startingblue.dailypainting.ai.exception.JsonAIError;
 import com.startingblue.dailypainting.ai.service.OpenAIAPIGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +43,7 @@ public class Gpt4oScenarioService implements ScenarioService {
             ObjectMapper objectMapper2 = new ObjectMapper();
             return objectMapper2.readTree(content.asText());
         } catch (Exception e) {
-            throw new InternalError("LLM responseBody Json parsing 에러", e);
+            throw new JsonAIError("LLM responseBody Json parsing 에러", e);
         }
     }
 
@@ -68,7 +69,7 @@ public class Gpt4oScenarioService implements ScenarioService {
 
             return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
         } catch (Exception e) {
-            throw new InternalError("Scenario requestBody 구성 에러", e);
+            throw new JsonAIError("Scenario requestBody 구성 에러", e);
         }
     }
 }

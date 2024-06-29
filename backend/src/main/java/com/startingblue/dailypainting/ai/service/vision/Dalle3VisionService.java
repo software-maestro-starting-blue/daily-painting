@@ -3,6 +3,7 @@ package com.startingblue.dailypainting.ai.service.vision;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.startingblue.dailypainting.ai.exception.JsonAIError;
 import com.startingblue.dailypainting.ai.service.OpenAIAPIGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +44,7 @@ public class Dalle3VisionService implements VisionService {
             JsonNode dataNode = root.path("data").get(0);
             return dataNode.path("url").asText();
         } catch (Exception e) {
-            throw new RuntimeException("LLM responseBody Json parsing 에러", e);
+            throw new JsonAIError("Vision responseBody Json parsing 에러", e);
         }
     }
 
@@ -65,7 +66,7 @@ public class Dalle3VisionService implements VisionService {
             // Convert JSON object to string
             return objectMapper.writeValueAsString(rootNode);
         } catch (Exception e) {
-            throw new InternalError("Vision requestBody 구성 에러", e);
+            throw new JsonAIError("Vision requestBody 구성 에러", e);
         }
     }
 }
