@@ -200,7 +200,7 @@ const DiaryFormPage = () => {
                 isShaking={content.length > 200}
             />
             <PersonalInformationLayout
-                isCheckd={personalInformationAgreement}
+                isChecked={personalInformationAgreement}
                 onClick={handlePersonalInformationAgreementClick}
             />
             <SubmitButton
