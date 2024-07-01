@@ -19,7 +19,7 @@ const WeatherSelectionLayout = (props: WeatherSelectionLayoutProps) => {
                         key={index}
                         weather={weather}
                         isSelected={selectedWeather === weather}
-                        setWeather={onWeatherClick}
+                        onWeatherChange={onWeatherClick}
                     />
                 ))}
             </div>
@@ -33,11 +33,11 @@ const WeatherSelectionLayout = (props: WeatherSelectionLayoutProps) => {
 export interface WeatherOptionProps {
     weather: string;
     isSelected: boolean;
-    setWeather: (weather: string) => void;
+    onWeatherChange: (weather: string) => void;
 }
 
 const WeatherOption = (props: WeatherOptionProps) => {
-    const { weather, isSelected, setWeather } = props;
+    const { weather, isSelected, onWeatherChange } = props;
 
     const getWeatherIcon = (weather: string) => {
         try {
@@ -50,7 +50,7 @@ const WeatherOption = (props: WeatherOptionProps) => {
     return (
         <div
             className={`weather-option ${isSelected ? "selected" : ""}`}
-            onClick={() => setWeather(weather)}
+            onClick={() => onWeatherChange(weather)}
         >
             <img
                 src={getWeatherIcon(weather)}
