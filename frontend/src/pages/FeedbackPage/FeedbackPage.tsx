@@ -49,8 +49,7 @@ const FeedbackPage = () => {
                     favoriteCharacter,
                     diaryId}
             );
-            navigate('/feedback-thanks', {
-            });
+            navigate('/feedback-thanks');
         }
     };
 
