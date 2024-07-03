@@ -52,9 +52,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Remove previous version BACK jar
-        working-directory: backend/prod/
-        run: rm -f *.jar
+      #- name: Remove previous version BACK jar
+      #  working-directory: backend/prod/
+        # run: rm -f *.jar
 
       - name: Download BACK jar file from artifact
         uses: actions/download-artifact@v4
