@@ -34,6 +34,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      
+      - name: Gradle Wrapper
+        run: gradle wrapper
+      
       - name: Build with Gradle
         run: ./gradlew bootJar
 
