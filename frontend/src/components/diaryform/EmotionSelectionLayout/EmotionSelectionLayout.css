@@ -1,0 +1,64 @@
+.emotion-selection {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    align-items: center;
+}
+
+.emotion-selection .emotion-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.emotion-selection .emotion-options {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.emotion-selection .emotion-options .emotion-option-label {
+    margin-top: 5px;
+}
+
+.emotion-selection .emotion-option {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.emotion-option:hover {
+    transform: scale(1.1);
+}
+
+.emotionz-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.emotion-selection .emotion-option.selected {
+    border: 2px solid blue;
+}
+
+.emotion-selection .emotion-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.emotion-selection .emotion-option input {
+    margin-right: 5px;
+}
+
+.emotion-selection .selected-emotions {
+    margin-top: 20px;
+    font-style: italic;
+}

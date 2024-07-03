@@ -1,0 +1,25 @@
+.submit-button button {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    align-items: center;
+    padding: 10px 20px; /* 좌우 여백을 작게 설정 */
+    text-align: center;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.submit-button button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
