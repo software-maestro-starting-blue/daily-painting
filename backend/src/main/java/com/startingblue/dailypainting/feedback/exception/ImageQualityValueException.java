@@ -1,6 +1,6 @@
 package com.startingblue.dailypainting.feedback.exception;
 
-public final class ImageQualityValueException extends RuntimeException {
+public final class ImageQualityValueException extends FeedbackException {
 
     private static final String IMAGE_QUALITY_VALUE_EXCEPTION = "이미지 품질 피드백은 1과 5 사이어야 합니다.";
 
