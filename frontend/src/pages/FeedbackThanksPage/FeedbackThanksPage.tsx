@@ -14,6 +14,9 @@ const FeedbackThanksPage = () => {
                 <p className="mt-4 text-muted-foreground">
                     앞으로도 많은 관심 부탁드려요!
                 </p>
+                <p className="mt-4 text-muted-foreground">
+                    인스타그램: <a href={"https://www.instagram.com/startingblue0603"}>@startingblue0603</a>
+                </p>
             </div>
         </div>
     );
