@@ -18,4 +18,8 @@ public final class FeedbackSaveRequest {
     private final String favoriteCharacter;
 
     private final Long diaryId;
+
+    private final boolean isEventAgreed;
+
+    private final String[] phoneNumber;
 }

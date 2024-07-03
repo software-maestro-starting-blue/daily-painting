@@ -1,5 +1,8 @@
 package com.startingblue.dailypainting.feedback.exception;
 
-public final class FeedbackException {
+public class FeedbackException extends RuntimeException {
 
+    public FeedbackException(String message) {
+        super(message);
+    }
 }
