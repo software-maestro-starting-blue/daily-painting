@@ -15,6 +15,9 @@ interface DiaryFormResponse {
     weathers: string[];
     emotions: string[];
     metPeople: string[];
+    weatherKoreanNames: string[];
+    emotionKoreanNames: string[];
+    metPeopleKoreanNames: string[];
 }
 
 interface DiarySaveRequest {
@@ -181,16 +184,19 @@ const DiaryFormPage = () => {
             </div>
             <WeatherSelectionLayout
                 weathers={formData.weathers}
+                weatherKoreanNames = {formData.weatherKoreanNames}
                 selectedWeather={weather}
                 onWeatherClick={setWeather}
             />
             <EmotionSelectionLayout
                 emotions={formData.emotions}
+                emotionKoreanNames = {formData.emotionKoreanNames}
                 selectedEmotions={emotions}
                 onEmotionClick={handleEmotionChange}
             />
             <MetPeopleSelectionLayout
                 metPeople={formData.metPeople}
+                metPeopleKoreanNames = {formData.metPeopleKoreanNames}
                 selectedPeople={metPeople}
                 onMetPeopleClick={handleMetPeopleChange}
             />
