@@ -44,7 +44,7 @@ public final class DiaryController {
         CompletableFuture<String> future = openAIService.generateImageFromDiary(diarySaveRequest);
         String imageUrl = future.join();
 
-        diaryService.updateDiaryImagePath(savedDiaryId, imageUrl);
+        diaryService.updateDiaryImage(savedDiaryId, imageUrl);
 
         DiarySavedResponse diarySavedResponse = new DiarySavedResponse(savedDiaryId, imageUrl);
 
