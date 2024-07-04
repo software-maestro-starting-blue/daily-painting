@@ -11,7 +11,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
 
     return (
         <div className="submit-button">
-            <button type="submit" disabled={isDisabled}>
+            <button type="submit" disabled={loading || isDisabled}>
                 {loading ? "저장중..." : "일기 작성"}
             </button>
         </div>

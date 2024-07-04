@@ -24,7 +24,6 @@ const GenderSelectionLayout = (props: GenderSelectionLayoutProps) => {
                 <option value="남성">남성</option>
                 <option value="여성">여성</option>
             </select>
-            <p className="selected-gender">Selected Gender: {gender}</p>
         </div>
     );
 };

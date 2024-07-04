@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  width: 100%; /* 초기에는 100%로 설정 */
+}
+
+@media screen and (min-width: 1023px){
+  .App {
+      width: 50%;
+      margin: 0 auto
+  }
+}
+
+/* 아이패드 이상의 큰 화면에서 너비 50%로 설정 */
+@media screen and (min-width: 768px)  and (max-device-width : 1023px){
+  .App {
+      width: 60%;
+      margin: 0 auto
+  }
+}

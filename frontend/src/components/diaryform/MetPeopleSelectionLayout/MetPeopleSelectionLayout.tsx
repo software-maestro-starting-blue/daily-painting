@@ -3,12 +3,13 @@ import "./MetPeopleSelectionLayout.css";
 
 export interface MetPeopleSelectionLayoutProps {
     metPeople: string[];
+    metPeopleKoreanNames: string[];
     selectedPeople: string[];
     onMetPeopleClick: (person: string) => void;
 }
 
 const MetPeopleSelectionLayout = (props: MetPeopleSelectionLayoutProps) => {
-    const { metPeople, selectedPeople, onMetPeopleClick } = props;
+    const { metPeople, metPeopleKoreanNames, selectedPeople, onMetPeopleClick } = props;
 
     return (
         <div className="met-people-selection">
@@ -17,35 +18,34 @@ const MetPeopleSelectionLayout = (props: MetPeopleSelectionLayoutProps) => {
                 {metPeople.map((person, index) => (
                     <PersonOption
                         key={index}
-                        person={person}
+                        metPerson={person}
+                        metPersonKoreanName={metPeopleKoreanNames[index]}
                         isSelected={selectedPeople.includes(person)}
                         onMetPeopleClick={onMetPeopleClick}
                     />
                 ))}
             </div>
-            <p className="selected-people">
-                Selected People: {selectedPeople.join(", ")}
-            </p>
         </div>
     );
 };
 
 export interface PersonOptionProps {
-    person: string;
+    metPerson: string;
+    metPersonKoreanName: string;
     isSelected: boolean;
     onMetPeopleClick: (person: string) => void;
 }
 
 const PersonOption = (props: PersonOptionProps) => {
-    const { person, isSelected, onMetPeopleClick } = props;
+    const { metPerson, metPersonKoreanName, isSelected, onMetPeopleClick } = props;
 
     return (
         <div
             className={`people-option ${isSelected ? "selected" : ""}`}
-            onClick={() => onMetPeopleClick(person)}
+            onClick={() => onMetPeopleClick(metPerson)}
         >
-            <img src={getIcon(person)} alt={person} className="people-icon" />
-            <label className="met-people-option-label">{person}</label>
+            <img src={getIcon(metPerson)} alt={metPerson} className="people-icon" />
+            <label className="met-people-option-label">{metPersonKoreanName}</label>
         </div>
     );
 };
