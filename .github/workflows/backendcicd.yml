@@ -64,5 +64,4 @@ jobs:
           
       - name: Deploy BACK to production server
         working-directory: backend/prod/
-        run: |
-          screen -dmS spring_server ./start.sh
+        run: sudo RUNNER_TRACKING_ID="" && ./start.sh
