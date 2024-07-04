@@ -45,6 +45,7 @@ jobs:
     runs-on: self-hosted
     env:
       CLOUD_FRONT_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID}}
+      S3_NAME: ${{ secrets.AWS_S3_NAME }}
     steps:
       # - name: Remove previous version app
       #   working-directory: frontend/
@@ -59,5 +60,5 @@ jobs:
       - name: Deploy DEV frontend
         working-directory: frontend/
         run: |
-          aws s3 sync build/ s3://${{ secrets.AWS_S3_NAME }} --delete
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
+          aws s3 sync build/ s3://S3_NAME --delete
+          aws cloudfront create-invalidation --distribution-id CLOUD_FRONT_DISTRIBUTION_ID --paths "/*"
