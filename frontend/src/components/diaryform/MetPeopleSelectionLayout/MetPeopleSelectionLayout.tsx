@@ -23,9 +23,6 @@ const MetPeopleSelectionLayout = (props: MetPeopleSelectionLayoutProps) => {
                     />
                 ))}
             </div>
-            <p className="selected-people">
-                Selected People: {selectedPeople.join(", ")}
-            </p>
         </div>
     );
 };

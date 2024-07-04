@@ -23,9 +23,6 @@ const WeatherSelectionLayout = (props: WeatherSelectionLayoutProps) => {
                     />
                 ))}
             </div>
-            <p className="selected-weather">
-                Selected Weather: {selectedWeather}
-            </p>
         </div>
     );
 };

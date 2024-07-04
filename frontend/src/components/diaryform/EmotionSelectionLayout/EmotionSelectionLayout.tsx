@@ -23,9 +23,6 @@ const EmotionSelectionLayout = (props: EmotionSelectionLayoutProps) => {
                     />
                 ))}
             </div>
-            <p className="selected-emotions">
-                Selected Emotions: {selectedEmotions.join(", ")}
-            </p>
         </div>
     );
 };

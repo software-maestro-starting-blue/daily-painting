@@ -37,9 +37,6 @@ const BirthYearInput = (props: BirthYearInputProps) => {
             >
                 {generateYearOptions()}
             </select>
-            <p className="selected-birth-year">
-                Selected Birth Year: {birthYear}
-            </p>
         </div>
     );
 };
