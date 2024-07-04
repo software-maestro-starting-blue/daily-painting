@@ -27,7 +27,8 @@ const PersonalInformationLayout = (props: PersonalInformationProps) => {
                     <pre>
                         {`
 목적
-본 동의서는 사용자가 작성한 일기 내용의 저장 및 처리와 품질 개선을 위한 저장 및 활용에 대한 동의와 관련된 사항을 명확히 하기 위해 작성되었습니다.
+본 동의서는 사용자가 작성한 일기 내용의 저장 및 처리와 품질 개선을 위한 저장 및 활용에 대한 동의와 관련된 사항을 
+명확히 하기 위해 작성되었습니다.
 
 수집하는 정보
 사용자가 작성한 일기 내용
@@ -52,7 +53,8 @@ const PersonalInformationLayout = (props: PersonalInformationProps) => {
 동의 철회는 고객 지원팀(startingblue0603@gmail.com)으로 연락 주시기 바랍니다.
 
 문의
-일기 내용 저장 및 처리 또는 품질 개선을 위한 저장 및 활용에 대한 문의사항은 고객 지원팀(startingblue0603@gmail.com)으로 연락 주시기 바랍니다.
+일기 내용 저장 및 처리 또는 품질 개선을 위한 저장 및 활용에 대한 문의사항은 
+고객 지원팀(startingblue0603@gmail.com)으로 연락 주시기 바랍니다. 
 위 내용을 충분히 이해하였으며, 이에 동의합니다.
 
 
