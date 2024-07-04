@@ -20,9 +20,11 @@ const DiaryImageLayout = (props: DiaryImageLayoutProps) => {
                 src={imageUrl}
                 style={{
                     aspectRatio: IMAGE_WIDTH / IMAGE_HEIGHT,
-                    objectFit: "cover"
+                    objectFit: "cover",
+                    width: "100%",
+                    margin: "0 auto",
+                    display: "block",
                 }}
-                width={IMAGE_WIDTH} height={IMAGE_HEIGHT}
                 className="diary-image"
             />
             <button className="diary-image-download-button" onClick={onImageDownloadClick}>
