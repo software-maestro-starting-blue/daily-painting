@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: FrontendApplication
-          path: frontend/dist
+          path: frontend/build
 
   deploy:
     needs: build-and-deploy
@@ -54,10 +54,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: FrontendApplication
-          path: frontend/dist
+          path: frontend/build
   
       - name: Deploy DEV frontend
-        working-directory: frontend/dist
+        working-directory: frontend/
         run: |
-          aws s3 sync /build s3://${{ secrets.AWS_S3_NAME }} --delete
+          aws s3 sync build/ s3://${{ secrets.AWS_S3_NAME }} --delete
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
