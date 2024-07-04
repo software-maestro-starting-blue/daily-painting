@@ -56,7 +56,7 @@ const DiaryFormPage = () => {
         const fetchFormData = async () => {
             try {
                 const response = await axios.get<DiaryFormResponse>(
-                    "http://localhost:8080" + "/api/diaries"
+                    DOMAIN_ADDRESS + "/api/diaries"
                 );
                 setFormData(response.data);
             } catch (error) {
