@@ -60,5 +60,5 @@ jobs:
       - name: Deploy DEV frontend
         working-directory: frontend/
         run: |
-          aws s3 sync build/ s3://S3_NAME --delete
-          aws cloudfront create-invalidation --distribution-id CLOUD_FRONT_DISTRIBUTION_ID --paths "/*"
+          aws s3 sync build/ s3://"$S3_NAME" --delete
+          aws cloudfront create-invalidation --distribution-id "$CLOUD_FRONT_DISTRIBUTION_ID" --paths "/*"
