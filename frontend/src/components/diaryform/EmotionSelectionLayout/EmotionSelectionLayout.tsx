@@ -3,12 +3,13 @@ import "./EmotionSelectionLayout.css";
 
 export interface EmotionSelectionLayoutProps {
     emotions: string[];
+    emotionKoreanNames: string[]; // Korean names for emotions
     selectedEmotions: string[];
     onEmotionClick: (emotion: string) => void;
 }
 
 const EmotionSelectionLayout = (props: EmotionSelectionLayoutProps) => {
-    const { emotions, selectedEmotions, onEmotionClick } = props;
+    const { emotions, emotionKoreanNames, selectedEmotions, onEmotionClick } = props;
 
     return (
         <div className="emotion-selection">
@@ -18,6 +19,7 @@ const EmotionSelectionLayout = (props: EmotionSelectionLayoutProps) => {
                     <EmotionOption
                         key={index}
                         emotion={emotion}
+                        emotionKoreanName={emotionKoreanNames[index]} // Korean name for the emotion
                         isSelected={selectedEmotions.includes(emotion)}
                         onEmotionClick={onEmotionClick}
                     />
@@ -29,12 +31,13 @@ const EmotionSelectionLayout = (props: EmotionSelectionLayoutProps) => {
 
 export interface EmotionOptionProps {
     emotion: string;
+    emotionKoreanName: string; // Korean name for the emotion
     isSelected: boolean;
     onEmotionClick: (emotion: string) => void;
 }
 
 const EmotionOption = (props: EmotionOptionProps) => {
-    const { emotion, isSelected, onEmotionClick } = props;
+    const { emotion, emotionKoreanName, isSelected, onEmotionClick } = props;
 
     const getEmotionIcon = (emotion: string) => {
         try {
@@ -54,7 +57,7 @@ const EmotionOption = (props: EmotionOptionProps) => {
                 alt={emotion}
                 className="emotion-icon"
             />
-            <label className="emotion-option-label">{emotion}</label>
+            <label className="emotion-option-label">{emotionKoreanName}</label>
         </div>
     );
 };
