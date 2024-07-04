@@ -24,8 +24,14 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Setup environment variables
+      run: |
+        echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> .env
+
     - name: Build React app
       run: npm run build
+      env:
+        CI: ""
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
