@@ -82,4 +82,11 @@ public class DiaryTest {
         assertThatThrownBy(() -> Diary.createDiary(1990, Gender.MALE, Weather.CLEAR,
                 List.of(Emotion.HAPPY), List.of(MetPerson.FRIEND), longContent)).isInstanceOf(ConstraintViolationException.class);
     }
+
+    @Test
+    void 한글_이름_출력() {
+        System.out.printf(String.valueOf(Emotion.findAllKoreanNames()));
+        System.out.printf(String.valueOf(Weather.findAllKoreanNames()));
+        System.out.printf(String.valueOf(MetPerson.findAllKoreanNames()));
+    }
 }

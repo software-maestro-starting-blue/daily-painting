@@ -41,4 +41,10 @@ public enum Weather {
                 .map(Weather::name)
                 .collect(Collectors.toList());
     }
+
+    public static List<String> findAllKoreanNames() {
+        return Arrays.stream(Weather.values())
+                .map(Weather::getName)
+                .collect(Collectors.toList());
+    }
 }

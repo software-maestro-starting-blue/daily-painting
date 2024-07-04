@@ -3,12 +3,13 @@ import "./WeatherSelectionLayout.css";
 
 export interface WeatherSelectionLayoutProps {
     weathers: string[];
+    weatherKoreanNames: string[];
     selectedWeather: string;
     onWeatherClick: (weather: string) => void;
 }
 
 const WeatherSelectionLayout = (props: WeatherSelectionLayoutProps) => {
-    const { weathers, selectedWeather, onWeatherClick } = props;
+    const { weathers, weatherKoreanNames, selectedWeather, onWeatherClick } = props;
 
     return (
         <div className="weather-selection">
@@ -18,26 +19,25 @@ const WeatherSelectionLayout = (props: WeatherSelectionLayoutProps) => {
                     <WeatherOption
                         key={index}
                         weather={weather}
+                        weatherKoreanName = {weatherKoreanNames[index]}
                         isSelected={selectedWeather === weather}
                         onWeatherChange={onWeatherClick}
                     />
                 ))}
             </div>
-            <p className="selected-weather">
-                Selected Weather: {selectedWeather}
-            </p>
         </div>
     );
 };
 
 export interface WeatherOptionProps {
     weather: string;
+    weatherKoreanName: string; // 추가
     isSelected: boolean;
     onWeatherChange: (weather: string) => void;
 }
 
 const WeatherOption = (props: WeatherOptionProps) => {
-    const { weather, isSelected, onWeatherChange } = props;
+    const { weather, weatherKoreanName, isSelected, onWeatherChange } = props;
 
     const getWeatherIcon = (weather: string) => {
         try {
@@ -57,7 +57,7 @@ const WeatherOption = (props: WeatherOptionProps) => {
                 alt={weather}
                 className="weather-icon"
             />
-            <label className="weather-option-label">{weather}</label>
+            <label className="weather-option-label">{weatherKoreanName}</label>
         </div>
     );
 };

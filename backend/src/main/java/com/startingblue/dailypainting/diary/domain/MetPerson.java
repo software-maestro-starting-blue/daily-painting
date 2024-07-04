@@ -13,7 +13,7 @@ public enum MetPerson {
     FAMILY(2L, "가족"), // Family
     LOVER(3L, "애인"), // Lover
     ACQUAINTANCE(4L, "지인"), // Acquaintance
-    NO_ONE(5L, "안만남"); // NoOne
+    NO_ONE(5L, "안 만남"); // NoOne
 
     private final Long id;
     private final String name;
@@ -45,6 +45,12 @@ public enum MetPerson {
     public static List<String> findAllNames() {
         return Arrays.stream(MetPerson.values())
                 .map(MetPerson::name)
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> findAllKoreanNames() {
+        return Arrays.stream(MetPerson.values())
+                .map(MetPerson::getName)
                 .collect(Collectors.toList());
     }
 }

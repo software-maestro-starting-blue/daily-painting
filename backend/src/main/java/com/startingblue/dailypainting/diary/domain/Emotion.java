@@ -58,4 +58,10 @@ public enum Emotion {
                 .map(Emotion::name)
                 .collect(Collectors.toList());
     }
+
+    public static List<String> findAllKoreanNames() {
+        return Arrays.stream(Emotion.values())
+                .map(Emotion::getName)
+                .collect(Collectors.toList());
+    }
 }

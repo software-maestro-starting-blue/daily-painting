@@ -30,7 +30,10 @@ public final class DiaryController {
         DiaryFormResponse diaryFormResponse = new DiaryFormResponse(
                 Weather.findAllNames(),
                 Emotion.findAllNames(),
-                MetPerson.findAllNames());
+                MetPerson.findAllNames(),
+                Weather.findAllKoreanNames(),
+                Emotion.findAllKoreanNames(),
+                MetPerson.findAllKoreanNames());
 
         return ResponseEntity.ok(diaryFormResponse);
     }
