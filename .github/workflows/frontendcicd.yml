@@ -47,9 +47,9 @@ jobs:
       CLOUD_FRONT_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID}}
       S3_NAME: ${{ secrets.AWS_S3_NAME }}
     steps:
-      # - name: Remove previous version app
-      #   working-directory: frontend/
-      #   run: rm -rf dist
+      - name: Remove previous version app
+        working-directory: frontend/
+        run: rm -rf build
   
       - name: Download build file from artifact
         uses: actions/download-artifact@v4
